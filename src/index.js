@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import dotenv from 'dotenv';
+import reduxThunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import rootReducer from './redux/reducers'
+import { createStore, applyMiddleware } from 'redux';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+dotenv.config();
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const store = createStore( rootReducer, {}, applyMiddleware(reduxThunk) );
+
+class Root extends Component {
+  render() {
+    return(
+      <Provider store={ store }>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/' component={ App } />
+          </Switch>
+        </BrowserRouter>
+      </Provider>
+    )
+  }
+}
+
+ReactDOM.render(<Root />, document.getElementById('root'));
