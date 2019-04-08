@@ -9,10 +9,19 @@ class Header extends Component {
 
     this.state = {
       doRedirect: false,
+      isLoggedIn: false,
     }
   }
 
-  setRedirect = () => {
+  componentDidMount() {
+    if ( localStorage.getItem( 'token' ) !== null ) {
+      this.setState({
+        isLoggedIn: true
+      });
+    }
+  }
+
+  setLoginRedirect = () => {
     this.setState({
       doRedirect: true
     })
@@ -27,10 +36,10 @@ class Header extends Component {
           <div className="Header__main__title">Sudoku App</div>
         </div>
         <div className="Header__button">
-          {(localStorage.getItem('token') === null) ? (
-            <Button onClick={this.setRedirect}>Login</Button>
+          { this.state.isLoggedIn ? (
+            <Button className='disabled'>Log out</Button> //Later UserProfile component will be added here
           ) : (
-            <Button>Profile</Button> //Later UserProfile component will be added here
+            <Button onClick={this.setLoginRedirect}>Login</Button>
           )}
           {doRedirect && <Redirect to='/login' />}
         </div>

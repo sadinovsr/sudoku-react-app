@@ -4,15 +4,18 @@ import dotenv from 'dotenv';
 import reduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import rootReducer from './redux/reducers'
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
+import LoginContainer from './containers/LoginContainer';
+import RegisterContainer from './containers/RegisterContainer';
 
 dotenv.config();
 
-const store = createStore( rootReducer, {}, applyMiddleware(reduxThunk) );
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore( rootReducer, {}, composeEnhancers( applyMiddleware(reduxThunk) ) );
 
 class Root extends Component {
   render() {
@@ -21,6 +24,8 @@ class Root extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path='/' component={ App } />
+            <Route exact path='/login' component={ LoginContainer } />
+            <Route exact path='/register' component={ RegisterContainer } />
           </Switch>
         </BrowserRouter>
       </Provider>
