@@ -20,7 +20,7 @@ class Root extends Component {
       <Provider store={ store }>
         <BrowserRouter>
           <Switch>
-            <Route exact path='/' component={ App } />
+            <Route exact path='*' component={ App } />
           </Switch>
         </BrowserRouter>
       </Provider>
