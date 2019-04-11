@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import {gridCreator} from '../../helpers/GridCreator';
+import {objectToString} from '../../helpers/ObjectToString';
+import { Button } from 'reactstrap';
 import './SudokuGrid.css';
+import { sudokuChecker } from '../../helpers/SudokuChecker';
 
 class SudokuGrid extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      sudokuId: this.props.sudoku._id,
       initialGrid: gridCreator(this.props.sudoku.sudoku).grid,
       gridObj: gridCreator(this.props.sudoku.sudoku).grid,
     };
@@ -16,7 +20,15 @@ class SudokuGrid extends Component {
     let newState = this.state.gridObj;
     newState[e.target.name] = e.target.value;
     this.setState({ gridObj: newState });
+    if ( localStorage.getItem('token') ) {
+      let stringSudoku = objectToString(this.state.gridObj);
+      this.props.onChangeSave(this.state.sudokuId, stringSudoku);
+    }
   };
+
+  onCheck = () => {
+    console.log(sudokuChecker(this.state.gridObj));
+  }
 
   render() {
     const { initialGrid, gridObj } = this.state;
@@ -125,6 +137,10 @@ class SudokuGrid extends Component {
             </tr>
           </tbody>
         </table>
+        <div className='SudokuGrid__controls'>
+          <Button onClick={this.onCheck} className='SudokuGrid__controls__button'>Check</Button>
+          <Button className='SudokuGrid__controls__button'>Solve</Button>
+      </div>
       </div>
     )
   }
