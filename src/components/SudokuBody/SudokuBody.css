@@ -1,0 +1,11 @@
+.SudokuBody {
+  margin: 10px;
+}
+
+.SudokuBody__grid {
+  margin: 10px;
+}
+
+.SudokuBody__controls {
+  margin: 10px;
+}

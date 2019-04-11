@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
 import { Container, Row, Col, Card } from 'reactstrap';
 import DifficultyContainer from '../../containers/DifficultyListContainer';
+import SudokuBody from '../../components/SudokuBody/SudokuBody';
 
 class MainBody extends Component {
   render() {
@@ -12,6 +13,7 @@ class MainBody extends Component {
             <Card>
               <Switch>
                 <Route exact path="/" component={DifficultyContainer} />
+                <Route exact path="/sudoku" component={SudokuBody} />
               </Switch>
             </Card>
           </Col>
