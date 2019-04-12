@@ -4,6 +4,7 @@ import {objectToString} from '../../helpers/ObjectToString';
 import { Button } from 'reactstrap';
 import './SudokuGrid.css';
 import { sudokuChecker } from '../../helpers/SudokuChecker';
+import { solveSudoku } from '../../helpers/SudokuSolver';
 
 class SudokuGrid extends Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class SudokuGrid extends Component {
       sudokuId: this.props.sudoku._id,
       initialGrid: gridCreator(this.props.sudoku.sudoku).grid,
       gridObj: gridCreator(this.props.sudoku.sudoku).grid,
+      isChecked: false,
+      isCorrect: false,
     };
   }
 
@@ -28,12 +31,49 @@ class SudokuGrid extends Component {
 
   onCheck = () => {
     console.log(sudokuChecker(this.state.gridObj));
+    if ( sudokuChecker(this.state.gridObj) ) {
+      this.setState({
+        isChecked: true,
+        isCorrect: true
+      })
+    } else {
+      this.setState({
+        isChecked: true,
+        isCorrect: false
+      })
+    }
+    setTimeout( () => {
+      this.setState({
+        isChecked: false,
+        isCorrect: false,
+      })
+    }, 4000)
+  }
+
+  onSolve = () => {
+    let solution = solveSudoku(this.state.initialGrid);
+    let newGrid = gridCreator(solution).grid;
+    this.setState({
+      gridObj: newGrid
+    })
   }
 
   render() {
-    const { initialGrid, gridObj } = this.state;
+    const { initialGrid, gridObj, isChecked, isCorrect } = this.state;
+    console.log(gridObj);
     return (
       <div className='SudokuGrid'>
+        {
+          isChecked ? (
+            isCorrect ? (
+              <div className='SudokuGrid__check correct'>CORRECT</div>
+            ) : (
+              <div className='SudokuGrid__check incorrect'>INCORRECT</div>
+            )
+          ) : (
+            <span></span>
+          )
+        }
         <table className='SudokuGrid__table'>
           <tbody>
             <tr>
@@ -139,8 +179,8 @@ class SudokuGrid extends Component {
         </table>
         <div className='SudokuGrid__controls'>
           <Button onClick={this.onCheck} className='SudokuGrid__controls__button'>Check</Button>
-          <Button className='SudokuGrid__controls__button'>Solve</Button>
-      </div>
+          <Button onClick={this.onSolve} className='SudokuGrid__controls__button'>Solve</Button>
+        </div>
       </div>
     )
   }

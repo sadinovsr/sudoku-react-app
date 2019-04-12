@@ -1,26 +1,25 @@
-.SudokuGrid {
-  text-align: center;
-}
-
 .SudokuGrid__table {
   margin: auto;
 }
 
 input[type=text] {
   text-align: center;
-  width: 3.7vmax;
+  width: 3.75vmax;
   height: 3.7vmax;
   font-size: 2.3vmax;
-  color: blue;
+  color: transparent;
+  text-shadow: 0 0 0 black;
+  border: none;
+}
+
+input[type=text]:focus {
+  background-color: #d9eeff;
+  outline: none;
 }
 
 input[type=text]:disabled {
   background-color: white;
-  color: black;
-}
-
-input {
-  border: 0;
+  color: #2196f3;
 }
 
 table {
@@ -29,6 +28,7 @@ table {
 
 td {
   border: 1px solid black;
+  padding: 0px;
 }
 
 td:nth-of-type(3n) {
@@ -41,4 +41,52 @@ tr:nth-of-type(3n) {
 
 .SudokuGrid__controls .SudokuGrid__controls__button {
   margin: 10px;
+}
+
+.SudokuGrid__check {
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 6vmax;
+  font-weight: 900;
+  width: 100%;
+  height: 10vmax;
+  margin: auto;
+}
+
+.correct {
+  animation-name: correct;
+  animation-duration: 4s;
+  /* background-color: lightgreen;
+  color: green; */
+}
+
+.incorrect {
+  animation-name: incorrect;
+  animation-duration: 4s;
+}
+
+@-webkit-keyframes correct {
+  0%   {background-color: rgba(144, 238, 144, 0); color: rgba(23, 146, 23, 0); text-shadow: 3px 3px 0px rgba(0, 0, 0, 0)}
+  50%  {background-color: rgb(144, 238, 144); color: rgba(23, 146, 23); text-shadow: 3px 3px 0px rgba(0,0,0,.3)}
+  100% {background-color: rgba(144, 238, 144, 0); color: rgba(23, 146, 23, 0); text-shadow: 3px 3px 0px rgba(0, 0, 0, 0)}
+}
+@keyframes correct {
+  0%   {background-color: rgba(144, 238, 144, 0); color: rgba(23, 146, 23, 0); text-shadow: 3px 3px 0px rgba(0, 0, 0, 0)}
+  50%  {background-color: rgb(144, 238, 144); color: rgba(23, 146, 23); text-shadow: 3px 3px 0px rgba(0,0,0,.3)}
+  100% {background-color: rgba(144, 238, 144, 0); color: rgba(23, 146, 23, 0); text-shadow: 3px 3px 0px rgba(0, 0, 0, 0)}
+}
+
+@-webkit-keyframes incorrect {
+  0%   {background-color: rgba(240, 128, 128, 0); color: rgba(255, 34, 34, 0); text-shadow: 3px 3px 0px rgba(0, 0, 0, 0)}
+  50%  {background-color: rgb(240, 128, 128); color: rgb(255, 34, 34); text-shadow: 3px 3px 0px rgba(0,0,0,.3)}
+  100% {background-color:  rgba(240, 128, 128, 0); color: rgba(255, 34, 34, 0); text-shadow: 3px 3px 0px rgba(0, 0, 0, 0)}
+}
+@keyframes incorrect {
+  0%   {background-color: rgba(240, 128, 128, 0); color: rgba(255, 34, 34, 0); text-shadow: 3px 3px 0px rgba(0, 0, 0, 0)}
+  50%  {background-color: rgb(240, 128, 128); color: rgb(255, 34, 34); text-shadow: 3px 3px 0px rgba(0,0,0,.3)}
+  100% {background-color:  rgba(240, 128, 128, 0); color: rgba(255, 34, 34, 0); text-shadow: 3px 3px 0px rgba(0, 0, 0, 0)}
 }
