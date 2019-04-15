@@ -18,9 +18,9 @@ const updateHistoryEntryError = () => {
 
 /* ---- action creators ---- */
 
-export const updateHistoryEntry = (sudokuId, sudoku) => {
+export const updateHistoryEntry = (sudokuId, sudokuObject) => {
   return dispatch => {
-    return SudokuAPI.call('patch', API.UPDATE_HISTORY_ENTRY + sudokuId, { answer: sudoku })
+    return SudokuAPI.call('patch', API.UPDATE_HISTORY_ENTRY + sudokuId, sudokuObject)
       .then(res => {
         dispatch(updateHistoryEntrySuccess(res));
       })

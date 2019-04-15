@@ -12,11 +12,37 @@ class SudokuGrid extends Component {
 
     this.state = {
       sudokuId: this.props.sudoku._id,
-      initialGrid: gridCreator(this.props.sudoku.sudoku).grid,
-      gridObj: gridCreator(this.props.sudoku.sudoku).grid,
+      initialGrid: gridCreator(this.props.sudoku.sudoku),
+      gridObj: gridCreator(this.props.sudoku.sudoku),
       isChecked: false,
       isCorrect: false,
+      doUpdates: true,
+      timer: 0,
     };
+  }
+
+  tick = () => {        
+    this.setState({
+      timer: this.state.timer + 1
+    });
+  }
+  componentDidMount = () => {
+    this.interval = setInterval( () => {
+      if (this.state.doUpdates) {
+        this.setState({
+          timer: this.state.timer + 1
+        });
+      }
+    }, 1000);
+  }
+  componentWillUnmount = () => {
+    clearInterval(this.interval);
+  }
+
+  formatTime = time => {
+    var minutes = "0" + Math.floor(time / 60);
+    var seconds = "0" + (time - minutes * 60);
+    return minutes.substr(-2) + ":" + seconds.substr(-2);
   }
 
   onInputChange = e => {
@@ -24,22 +50,29 @@ class SudokuGrid extends Component {
     newState[e.target.name] = e.target.value;
     this.setState({ gridObj: newState });
     if ( localStorage.getItem('token') ) {
-      let stringSudoku = objectToString(this.state.gridObj);
-      this.props.onChangeSave(this.state.sudokuId, stringSudoku);
+      let answer = objectToString(this.state.gridObj);
+      let sudokuObject = {
+        answer,
+        time: this.state.timer,
+      }
+      this.props.onChangeSave(this.state.sudokuId, sudokuObject);
     }
   };
 
   onCheck = () => {
-    console.log(sudokuChecker(this.state.gridObj));
     if ( sudokuChecker(this.state.gridObj) ) {
       this.setState({
         isChecked: true,
-        isCorrect: true
+        isCorrect: true,
+        doUpdates: false,
       })
+      if ( localStorage.getItem('token') ) {
+        this.props.onChangeSave(this.state.sudokuId, { completed: true });
+      }
     } else {
       this.setState({
         isChecked: true,
-        isCorrect: false
+        isCorrect: false,
       })
     }
     setTimeout( () => {
@@ -47,20 +80,30 @@ class SudokuGrid extends Component {
         isChecked: false,
         isCorrect: false,
       })
-    }, 4000)
+    }, 3900)
   }
 
   onSolve = () => {
     let solution = solveSudoku(this.state.initialGrid);
-    let newGrid = gridCreator(solution).grid;
+    let newGrid = gridCreator(solution);
     this.setState({
-      gridObj: newGrid
+      gridObj: newGrid,
+      doUpdates: false
     })
+    if ( localStorage.getItem('token') ) {
+      let answer = objectToString(newGrid);
+      let sudokuObject = {
+        answer,
+        time: this.state.timer,
+        completed: true,
+        usedSolve: true
+      }
+      this.props.onChangeSave(this.state.sudokuId, sudokuObject)
+    }
   }
 
   render() {
     const { initialGrid, gridObj, isChecked, isCorrect } = this.state;
-    console.log(gridObj);
     return (
       <div className='SudokuGrid'>
         {
@@ -178,7 +221,20 @@ class SudokuGrid extends Component {
           </tbody>
         </table>
         <div className='SudokuGrid__controls'>
-          <Button onClick={this.onCheck} className='SudokuGrid__controls__button'>Check</Button>
+          {/* <Timer formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}>
+            {({ stop, getTime }) => (
+              <React.Fragment>
+                <Button onClick={this.onCheck} className='SudokuGrid__controls__button' disabled={isChecked ? 1 : 0}>Check</Button>
+                  <span className='SudokuGrid__controls__timer'>
+                    <Timer.Minutes/> {` : `}
+                    <Timer.Seconds/>
+                  </span>
+                <Button onClick={this.onSolve(stop)} className='SudokuGrid__controls__button'>Solve</Button>
+              </React.Fragment>
+            )}
+          </Timer> */}
+          <Button onClick={this.onCheck} className='SudokuGrid__controls__button' disabled={isChecked ? 1 : 0}>Check</Button>
+          <span>{this.formatTime(this.state.timer)}</span>
           <Button onClick={this.onSolve} className='SudokuGrid__controls__button'>Solve</Button>
         </div>
       </div>

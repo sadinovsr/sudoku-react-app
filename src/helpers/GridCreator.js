@@ -17,5 +17,5 @@ export const gridCreator = sudoku => {
       counter++;
     }
   }
-  return { grid };
+  return grid;
 }

@@ -40,7 +40,13 @@ tr:nth-of-type(3n) {
 }
 
 .SudokuGrid__controls .SudokuGrid__controls__button {
-  margin: 10px;
+  margin: 20px;
+}
+
+.SudokuGrid__controls__timer {
+  vertical-align: middle;
+  font-size: 32px;
+  font-weight: 200;
 }
 
 .SudokuGrid__check {

@@ -24,7 +24,7 @@ class Header extends Component {
     return (
       <div className="Header">
         <div className="Header__main">
-          <div className="Header__main__title">Sudoku App</div>
+          <div className="Header__main__title">SUDOKU APP</div>
         </div>
         <div className="Header__button">
           {(localStorage.getItem('token') === null) ? (

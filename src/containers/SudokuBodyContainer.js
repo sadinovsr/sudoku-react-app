@@ -15,17 +15,17 @@ class SudokuBodyContainer extends Component {
     }
   }
 
-  returnSudoku ( smth ) {
+  returnSudoku ( sudoku ) {
     if ( localStorage.getItem('token') === null ) {
-      this.props.getSudoku(smth._id);
+      this.props.getSudoku(sudoku._id);
     } else {
       this.props
-        .checkSudokuStarted(smth._id)
+        .checkSudokuStarted(sudoku._id)
         .then( () => {
           if ( this.props.isStarted === false ) {
-            this.props.getSudoku(smth._id)
+            this.props.getSudoku(sudoku._id)
           } else {
-            this.props.getRandomizedSudokuByDifficulty(smth.difficulty)
+            this.props.getRandomizedSudokuByDifficulty(sudoku.difficulty)
               .then ( () => {
                 this.returnSudoku(this.props.sudoku);
               })
