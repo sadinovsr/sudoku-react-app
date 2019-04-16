@@ -3,6 +3,8 @@ import { Route, Switch } from "react-router-dom";
 import { Container, Row, Col, Card } from 'reactstrap';
 import DifficultyContainer from '../../containers/DifficultyListContainer';
 import SudokuBodyContainer from '../../containers/SudokuBodyContainer';
+import PageNotFound from '../../components/PageNotFound/PageNotFound';
+import './MainBody.css';
 
 class MainBody extends Component {
   render() {
@@ -14,6 +16,7 @@ class MainBody extends Component {
               <Switch>
                 <Route exact path="/" component={DifficultyContainer} />
                 <Route exact path="/sudoku" component={SudokuBodyContainer} />
+                <Route path="*" component={PageNotFound} />
               </Switch>
             </Card>
           </Col>

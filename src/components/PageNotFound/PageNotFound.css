@@ -1,0 +1,17 @@
+.PageNotFound {
+  margin: 30px;
+}
+
+.PageNotFound__title {
+  font-weight: 200;
+  font-size: 48px;
+}
+
+.PageNotFound__text {
+  padding: 20px 20px 0px 20px;
+  font-size: 22px;
+  font-weight: 200;
+}
+p {
+  margin-bottom: 0;
+}

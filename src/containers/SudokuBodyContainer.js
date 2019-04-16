@@ -43,7 +43,9 @@ class SudokuBodyContainer extends Component {
       (sudoku) ? (
         <SudokuBody sudoku={sudoku} />
       ) : (
-        <Spinner />
+        <div className='SudokuSpinner'>
+          <Spinner style={{height: '3rem', width: '3rem'}}/>
+        </div>
       )
     );
   }
