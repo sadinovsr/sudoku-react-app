@@ -1,0 +1,30 @@
+.Header {
+  height: 60px;
+  background-color: rgb(255, 255, 255);;
+  padding: 10px;
+  box-shadow: 0px 3px 15px rgb(212, 212, 212);
+}
+
+.Header__main {
+  padding-left: 10px;
+  float: left;
+}
+
+.Header__main__logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  float: left;
+  margin-right: 10px;
+}
+
+.Header__main__title {
+  font-size: 26px;
+  font-weight: 200;
+  float: left;
+}
+
+.Header__button {
+  padding-top: 2px;
+  float: right;
+}

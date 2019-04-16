@@ -1,0 +1,56 @@
+.DifficultyList {
+  padding: 20px;
+}
+
+.DifficultyList__header {
+  padding-bottom: 20px;
+  font-size: 28px;
+  font-weight: 200;
+  text-transform: uppercase; 
+}
+
+.DifficultyList__body {
+  margin: auto;
+  height: 50vh;
+}
+
+.DifficultyList__body__button {
+  margin: auto;
+  width: 90%;
+  height: 20%;
+  border: 0;
+  color: black;
+  font-size: 24px;
+}
+
+.color-easy {
+  background-color: #abcb42;
+}
+
+.color-easy:hover {
+  background-color: #98b43c;
+}
+
+.color-medium {
+  background-color: #e7d42d;
+}
+
+.color-medium:hover {
+  background-color: #d6c313;
+}
+
+.color-hard {
+  background-color: #ee9e0b;
+}
+
+.color-hard:hover {
+  background-color: #db930d;
+}
+
+.color-veryhard {
+  background-color: #e9611d;
+}
+
+.color-veryhard:hover {
+  background-color: #d4591b;
+}
