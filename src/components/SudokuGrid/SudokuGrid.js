@@ -221,20 +221,8 @@ class SudokuGrid extends Component {
           </tbody>
         </table>
         <div className='SudokuGrid__controls'>
-          {/* <Timer formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}>
-            {({ stop, getTime }) => (
-              <React.Fragment>
-                <Button onClick={this.onCheck} className='SudokuGrid__controls__button' disabled={isChecked ? 1 : 0}>Check</Button>
-                  <span className='SudokuGrid__controls__timer'>
-                    <Timer.Minutes/> {` : `}
-                    <Timer.Seconds/>
-                  </span>
-                <Button onClick={this.onSolve(stop)} className='SudokuGrid__controls__button'>Solve</Button>
-              </React.Fragment>
-            )}
-          </Timer> */}
           <Button onClick={this.onCheck} className='SudokuGrid__controls__button' disabled={isChecked ? true : false}>Check</Button>
-          <span>{this.formatTime(this.state.timer)}</span>
+          <div className='SudokuGrid__controls__timer'>{this.formatTime(this.state.timer)}</div>
           <Button onClick={this.onSolve} className='SudokuGrid__controls__button'>Solve</Button>
         </div>
       </div>

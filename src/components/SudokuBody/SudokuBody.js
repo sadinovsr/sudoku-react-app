@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-// import SudokuGrid from '../SudokuGrid/SudokuGrid.js';
 import SudokuGridContainer from '../../containers/SudokuGridContainer.js';
-// import SudokuControls from '../SudokuControls/SudokuControls.js';
 import './SudokuBody.css';
 
 class SudokuBody extends Component {
@@ -11,7 +9,6 @@ class SudokuBody extends Component {
       <div className='SudokuBody'>
         <div className='SudokuBody__grid'>
           <SudokuGridContainer sudoku={sudoku} />
-          {/* <SudokuGrid sudoku={sudoku}/> */}
         </div>
       </div>
     )
