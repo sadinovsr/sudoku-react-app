@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import './Header.css';
 
@@ -8,31 +8,31 @@ class Header extends Component {
     super();
 
     this.state = {
-      doRedirect: false,
+      doRedirectToLogin: false,
     }
   }
 
-  setRedirect = () => {
+  setRedirectToLogin = () => {
     this.setState({
-      doRedirect: true
+      doRedirectToLogin: true
     })
   }
 
   render() {
-    const { doRedirect } = this.state;
+    const { doRedirectToLogin } = this.state;
 
     return (
       <div className="Header">
         <div className="Header__main">
-          <div className="Header__main__title">SUDOKU APP</div>
+          <Link to='/' className="Header__main__title">SUDOKU APP</Link>
         </div>
         <div className="Header__button">
           {(localStorage.getItem('token') === null) ? (
-            <Button onClick={this.setRedirect}>Login</Button>
+            <Button onClick={this.setRedirectToLogin}>Login</Button>
           ) : (
             <Button>Profile</Button> //Later UserProfile component will be added here
           )}
-          {doRedirect && <Redirect to='/login' />}
+          {doRedirectToLogin && <Redirect to='/login' />}
         </div>
       </div>
     )
