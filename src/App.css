@@ -1,4 +1,10 @@
 .App {
   text-align: center;
   background-color: rgb(245, 249, 250);
+  height:100vh;
+  overflow-x: hidden;
+}
+
+.App__content {
+  padding: 20px 0px 20px 0px;
 }

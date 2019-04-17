@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import './Header.css';
 
@@ -8,7 +8,7 @@ class Header extends Component {
     super();
 
     this.state = {
-      doRedirect: false,
+      doRedirectToLogin: false,
       isLoggedIn: false,
     }
   }
@@ -21,27 +21,27 @@ class Header extends Component {
     }
   }
 
-  setLoginRedirect = () => {
+  setRedirectToLogin = () => {
     this.setState({
-      doRedirect: true
+      doRedirectToLogin: true
     })
   }
 
   render() {
-    const { doRedirect } = this.state;
+    const { doRedirectToLogin } = this.state;
 
     return (
       <div className="Header">
         <div className="Header__main">
-          <div className="Header__main__title">Sudoku App</div>
+          <Link to='/' className="Header__main__title">SUDOKU APP</Link>
         </div>
         <div className="Header__button">
           { this.state.isLoggedIn ? (
             <Button className='disabled'>Log out</Button> //Later UserProfile component will be added here
           ) : (
-            <Button onClick={this.setLoginRedirect}>Login</Button>
+            <Button onClick={this.setRedirectToLogin}>Login</Button>
           )}
-          {doRedirect && <Redirect to='/login' />}
+          {doRedirectToLogin && <Redirect to='/login' />}
         </div>
       </div>
     )

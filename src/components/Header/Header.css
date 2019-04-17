@@ -19,10 +19,16 @@
 }
 
 .Header__main__title {
-  padding-top: 3px;
-  font-size: 20px;
-  font-weight: 400;
+  padding-top: 0;
+  font-size: 26px;
+  font-weight: 200;
   float: left;
+  color: black;
+}
+
+.Header__main__title:hover {
+  color: black;
+  text-decoration: none;
 }
 
 .Header__button {
