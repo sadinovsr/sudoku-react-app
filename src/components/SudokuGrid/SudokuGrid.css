@@ -2,9 +2,9 @@
   margin: auto;
 }
 
-input[type=text] {
+.SudokuGrid__table input {
   text-align: center;
-  width: 3.55vmax;
+  width: 3.58vmax;
   height: 3.5vmax;
   font-size: 2.3vmax;
   color: transparent;
@@ -12,14 +12,15 @@ input[type=text] {
   border: none;
 }
 
-input[type=text]:focus {
+.SudokuGrid__table input:focus {
   background-color: #d9eeff;
   outline: none;
 }
 
-input[type=text]:disabled {
+.SudokuGrid__table input:disabled {
   background-color: white;
   color: #2196f3;
+  -webkit-opacity: 1;
 }
 
 table {

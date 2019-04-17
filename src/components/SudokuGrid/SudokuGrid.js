@@ -21,11 +21,6 @@ class SudokuGrid extends Component {
     };
   }
 
-  tick = () => {        
-    this.setState({
-      timer: this.state.timer + 1
-    });
-  }
   componentDidMount = () => {
     this.interval = setInterval( () => {
       if (this.state.doUpdates) {
@@ -35,6 +30,7 @@ class SudokuGrid extends Component {
       }
     }, 1000);
   }
+  
   componentWillUnmount = () => {
     clearInterval(this.interval);
   }
