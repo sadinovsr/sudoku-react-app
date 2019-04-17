@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Alert } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './Register.css';
 
@@ -20,23 +20,12 @@ class Register extends Component {
 
   render() {
     const { username, email, password } = this.state;
-    const { onRegister, errorMessage } = this.props;
+    const { onRegister } = this.props;
 
     return (
       <div className="Register">
         <div className="Register__content">
           <h2>Register</h2>
-          {
-            errorMessage ? (
-              <Alert color='danger'>
-              {errorMessage.map((value) => {
-                return <div>{value}</div>
-              })}
-              </Alert>
-            ) : (
-              <div></div>
-            )
-          }
           <form>
             <div className="form-group">
               <label>username</label>

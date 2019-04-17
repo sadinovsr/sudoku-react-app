@@ -6,6 +6,8 @@ import {
   REGISTER_ERROR,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
+  LOGOUT_SUCCESS,
+  LOGOUT_ERROR,
 } from '../../constants';
 
 /* ------ actions ------ */
@@ -44,6 +46,18 @@ const loginError = message => {
   }
 }
 
+const logoutSuccess = () => {
+  return {
+    type: LOGOUT_SUCCESS,
+  }
+}
+
+const logoutError = () => {
+  return {
+    type: LOGOUT_ERROR,
+  }
+}
+
 /* ------ action creators ------ */
 
 export const register = (username, email, password) => {
@@ -71,5 +85,16 @@ export const login = (username, password) => {
         dispatch(loginSuccess());
       })
       .catch( e => dispatch( loginError( JSON.stringify( e.response.data.error ) ) ) );
+  }
+}
+
+export const logout = () => {
+  return dispatch => {
+    if ( localStorage.getItem('token') ) {
+      localStorage.removeItem('token');
+      return dispatch(logoutSuccess());
+    } else {
+      return dispatch(logoutError());
+    }    
   }
 }

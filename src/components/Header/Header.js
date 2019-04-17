@@ -27,6 +27,13 @@ class Header extends Component {
     })
   }
 
+  handleLogout = () => {
+    this.setState({
+      isLoggedIn: false
+    })
+    this.props.onLogout();
+  }
+
   render() {
     const { doRedirectToLogin } = this.state;
 
@@ -37,7 +44,7 @@ class Header extends Component {
         </div>
         <div className="Header__button">
           { this.state.isLoggedIn ? (
-            <Button className='disabled'>Log out</Button> //Later UserProfile component will be added here
+            <Button onClick={this.handleLogout}>Log out</Button>
           ) : (
             <Button onClick={this.setRedirectToLogin}>Login</Button>
           )}

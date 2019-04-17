@@ -3,6 +3,8 @@ import {
   REGISTER_ERROR,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
+  LOGOUT_SUCCESS,
+  LOGOUT_ERROR,
 } from '../../constants';
 
 const defaultState = {
@@ -28,6 +30,17 @@ export const loginReducer = (state = defaultState, action) => {
       return { ...state, isLoggedIn: true, errorMessage: null };
     case LOGIN_ERROR:
       return { ...state, isLoggedIn: false, errorMessage: action.payload };
+    default:
+      return state;
+  }
+}
+
+export const logoutReducer = (state = defaultState, action) => {
+  switch (action.type) {
+    case LOGOUT_SUCCESS:
+      return { ...state, isLoggedIn: false };
+    case LOGOUT_ERROR: 
+      return { ...state, isLoggedIn: true };
     default:
       return state;
   }
