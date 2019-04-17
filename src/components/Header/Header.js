@@ -9,6 +9,15 @@ class Header extends Component {
 
     this.state = {
       doRedirectToLogin: false,
+      isLoggedIn: false,
+    }
+  }
+
+  componentDidMount() {
+    if ( localStorage.getItem( 'token' ) !== null ) {
+      this.setState({
+        isLoggedIn: true
+      });
     }
   }
 
@@ -16,6 +25,13 @@ class Header extends Component {
     this.setState({
       doRedirectToLogin: true
     })
+  }
+
+  handleLogout = () => {
+    this.setState({
+      isLoggedIn: false
+    })
+    this.props.onLogout();
   }
 
   render() {
@@ -27,10 +43,10 @@ class Header extends Component {
           <Link to='/' className="Header__main__title">SUDOKU APP</Link>
         </div>
         <div className="Header__button">
-          {(localStorage.getItem('token') === null) ? (
-            <Button onClick={this.setRedirectToLogin}>Login</Button>
+          { this.state.isLoggedIn ? (
+            <Button onClick={this.handleLogout}>Log out</Button>
           ) : (
-            <Button>Profile</Button> //Later UserProfile component will be added here
+            <Button onClick={this.setRedirectToLogin}>Login</Button>
           )}
           {doRedirectToLogin && <Redirect to='/login' />}
         </div>
