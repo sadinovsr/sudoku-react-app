@@ -5,9 +5,6 @@ import { login } from '../redux/actions/userActions';
 import Login from '../components/Login/Login';
 
 class LoginContainer extends Component {
-  componentDidMount() {
-
-  }
 
   onLogin = (username, password) => {
     if (!username || !password) {
