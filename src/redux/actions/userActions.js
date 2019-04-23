@@ -8,6 +8,8 @@ import {
   LOGIN_ERROR,
   LOGOUT_SUCCESS,
   LOGOUT_ERROR,
+  GET_USER_SELF_SUCCESS,
+  GET_USER_SELF_ERROR,
 } from '../../constants';
 
 /* ------ actions ------ */
@@ -58,6 +60,19 @@ const logoutError = () => {
   }
 }
 
+const getUserSelfSuccess = res => {
+  return {
+    type: GET_USER_SELF_SUCCESS,
+    payload: res.data.payload,
+  }
+}
+
+const getUserSelfError = () => {
+  return {
+    type: GET_USER_SELF_ERROR,
+  }
+}
+
 /* ------ action creators ------ */
 
 export const register = (username, email, password) => {
@@ -96,5 +111,13 @@ export const logout = () => {
     } else {
       return dispatch(logoutError());
     }    
+  }
+}
+
+export const getUserSelf = () => {
+  return dispatch => {
+    return SudokuAPI.get(API.GET_USER_SELF)
+      .then( res => dispatch( getUserSelfSuccess( res ) ) )
+      .catch( () => dispatch( getUserSelfError() ) );
   }
 }

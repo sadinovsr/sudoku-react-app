@@ -5,6 +5,10 @@ import { login } from '../redux/actions/userActions';
 import Login from '../components/Login/Login';
 
 class LoginContainer extends Component {
+  componentDidMount() {
+
+  }
+
   onLogin = (username, password) => {
     if (!username || !password) {
       return;
@@ -13,9 +17,13 @@ class LoginContainer extends Component {
   }
 
   render() {
-    const { isLoggedIn, errorMessage } = this.props;
-
-    return isLoggedIn ? <Redirect to="/" /> : <Login onLogin={this.onLogin} errorMessage={errorMessage} isLoggedIn={isLoggedIn}/>
+    let { isLoggedIn, errorMessage } = this.props;
+    
+    if ( !localStorage.getItem('token') ) {
+      return <Login onLogin={this.onLogin} errorMessage={errorMessage} isLoggedIn={isLoggedIn}/>
+    } else {
+      return <Redirect to='/' />
+    }
   }
 }
 
