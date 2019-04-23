@@ -1,27 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logout } from '../redux/actions/userActions';
+import { logout, getUserSelf } from '../redux/actions/userActions';
 import Header from '../components/Header/Header';
 
 class HeaderContainer extends Component {
+  componentDidMount() {
+    if ( localStorage.getItem('token') ) {
+      this.props.getUserSelf();
+    }
+  }
+
   onLogout = () => {
     this.props.logout();
   }
 
   render() {
-    const { isLoggedIn } = this.props;
-    return <Header isLoggedIn={isLoggedIn} onLogout={this.onLogout} />
+    const { isLoggedIn, user } = this.props;
+    return <Header isLoggedIn={isLoggedIn} user={user} onLogout={this.onLogout} />
   }
 }
 
 const mapStateToProps = state => {
   return {
     isLoggedIn: state.logoutReducer.isLoggedIn,
+    user: state.getUserSelfReducer.user
   }
 };
 
 const mapDispatchToProps = {
-  logout
+  logout,
+  getUserSelf
 }
 
 export default connect(

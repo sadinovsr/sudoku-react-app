@@ -24,6 +24,7 @@
   font-weight: 200;
   float: left;
   color: black;
+  letter-spacing: 2px;
 }
 
 .Header__main__title:hover {
@@ -34,4 +35,28 @@
 .Header__button {
   padding-top: 2px;
   float: right;
+}
+
+.Header__button__dropdown__toggle {
+  background-color: transparent;
+  border: 0;
+  color: black;
+  text-transform: uppercase; 
+}
+
+.Header__button__dropdown__toggle:hover {
+  background-color: transparent;
+  color: black;
+}
+
+.Header__button__dropdown__toggle__text {
+  padding-right: 10px;
+  font-size: 18px;
+  font-weight: 200;
+  letter-spacing: 2px;
+}
+
+.Header__button__dropdown__menu {
+  margin-top:10px;
+  text-align: right;
 }
