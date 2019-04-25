@@ -10,20 +10,33 @@ class SudokuBodyContainer extends Component {
   constructor(props) {
     super(props);
 
-    if (this.props.location.state) {
-      this.returnSudoku(this.props.location.state.sudoku);
-    }
+    this.state = {
+      gotNewSudoku: false,
+    };
+
+    this.onLoad();
   }
 
-  returnSudoku ( sudoku ) {
+  async onLoad () {
+    if (this.props.location.state) {
+      await this.returnSudoku(this.props.location.state.sudoku);
+      this.setState({
+        gotNewSudoku: true
+      });
+    } 
+  }
+
+
+  async returnSudoku ( sudoku ) {
     if ( localStorage.getItem('token') === null ) {
-      this.props.getSudoku(sudoku._id);
+      await this.props.getSudoku(sudoku._id);
+
     } else {
       this.props
         .checkSudokuStarted(sudoku._id)
-        .then( () => {
+        .then( async () => {
           if ( this.props.isStarted === false ) {
-            this.props.getSudoku(sudoku._id)
+            await this.props.getSudoku(sudoku._id)
           } else {
             this.props.getRandomizedSudokuByDifficulty(sudoku.difficulty)
               .then ( () => {
@@ -38,9 +51,10 @@ class SudokuBodyContainer extends Component {
   }
 
   render() {
+    const {gotNewSudoku} = this.state;
     const {sudoku} = this.props;
     return (
-      (sudoku) ? (
+      (sudoku && gotNewSudoku) ? (
         <SudokuBody sudoku={sudoku} />
       ) : (
         <div className='SudokuSpinner'>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import './DifficultyList.css';
 
-class MainBody extends Component {
+class DifficultyList extends Component {
   render() {
     const { onDifficultySelect } = this.props;
     return (
@@ -21,4 +21,4 @@ class MainBody extends Component {
   }
 }
 
-export default MainBody;
+export default DifficultyList;
