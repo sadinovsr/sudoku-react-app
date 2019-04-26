@@ -19,8 +19,8 @@ class HistoryCard extends Component {
             <div className='HistoryCard__container__index oneLine'>{index}</div>
             <div className='HistoryCard__container__difficulty oneLine'>{historyEntry.difficulty}</div>
             <div className='HistoryCard__container__time oneLine'>{this.formatTime(historyEntry.time)}</div>
-            <div className='HistoryCard__container__button'><Button outline className='button' onClick={() => onContinue(historyEntry.sudokuId)} size='sm'>Continue</Button></div>
-          </div>
+            <div className='HistoryCard__container__button'><Button outline className='button' onClick={() => onContinue(historyEntry)} size='sm'>Continue</Button></div>
+          </div> 
         </Card>
       ) : (
         <Card className='HistoryCard'>
@@ -40,15 +40,6 @@ class HistoryCard extends Component {
           </div>
         </Card>
       )
-
-        /* 
-
-        izlabot esosho sudoku paradishanu, lai var izmantot ari history apskatisanai. varetu padot kadu
-        parametru, kurs ja ir true, tad visi lauki ir disabled un laiks neskaitas. ja padod nepabeigtu 
-        sudoku, tad var pildit, bet initial state janomaina un janomaina ari initial time.
-        
-        */
-
     )
   }
 }

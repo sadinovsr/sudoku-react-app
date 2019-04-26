@@ -10,12 +10,19 @@ class HistoryListContainer extends Component {
     this.props.getDividedHistoryEntries();
   }
 
+  redirectToSudoku = (sudoku, historyEntry) => {
+    this.props.history.push({
+      pathname: '/sudoku',
+      state: { sudoku, historyEntry, fromHistory: true }
+    })
+  }
+
   render() {
     const { dividedHistory } = this.props;
     
     if ( dividedHistory ) {
       return (
-        <HistoryList dividedHistory={dividedHistory} />
+        <HistoryList dividedHistory={dividedHistory} redirectToSudoku={this.redirectToSudoku} />
       );
     }
     return (

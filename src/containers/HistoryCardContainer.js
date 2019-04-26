@@ -2,15 +2,22 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import HistoryCard from "../components/HistoryCard/HistoryCard";
 import { getSudoku } from "../redux/actions/sudokuActions";
-import { Spinner } from 'reactstrap';
 
 class HistoryCardContainer extends Component {
 
-  onContinue = sudokuId => {
-    if ( !sudokuId ) {
+  onContinue = historyEntry => {
+    if ( !historyEntry ) {
       return;
     }
-    console.log(sudokuId);
+    const { redirectToSudoku } = this.props;
+    this.props
+      .getSudoku(historyEntry.sudokuId)
+      .then( () => {
+        redirectToSudoku(this.props.sudoku, historyEntry);
+      })
+      .catch( error => {
+        console.error(error);
+      })
   }
 
   render() {
@@ -18,7 +25,7 @@ class HistoryCardContainer extends Component {
     
     return (
       (historyEntry) ? (
-        <HistoryCard key={index} index={index} historyEntry={historyEntry} onContinue={this.onContinue} />
+        <HistoryCard key={key} index={index} historyEntry={historyEntry} onContinue={this.onContinue} />
       ) : (
         <div>Nothing here</div>
       )
@@ -28,10 +35,12 @@ class HistoryCardContainer extends Component {
 
 const mapStateToProps = state => {
   return {
+    sudoku: state.getSudokuReducer.sudoku
   };
 };
 
 const mapDispatchToProps = {
+  getSudoku
 };
 
 export default connect(

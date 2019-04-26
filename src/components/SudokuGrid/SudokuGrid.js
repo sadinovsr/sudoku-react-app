@@ -22,6 +22,14 @@ class SudokuGrid extends Component {
   }
 
   componentDidMount = () => {
+    if (this.props.historyEntry) {
+      const { historyEntry } = this.props;
+      this.setState({
+        timer: historyEntry.time,
+        gridObj: gridCreator(historyEntry.answer)
+      })
+    }
+
     this.interval = setInterval( () => {
       if (this.state.doUpdates) {
         this.setState({

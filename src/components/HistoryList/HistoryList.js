@@ -5,14 +5,14 @@ import './HistoryList.css';
 
 class HistoryList extends Component {
   render() {
-    const { dividedHistory } = this.props;
+    const { dividedHistory, redirectToSudoku } = this.props;
     return (
       <div className='HistoryList'>
         <div className='HistoryList__notCompleted'>
           <h2>Started to solve</h2>
           {
             dividedHistory.notCompletedHistory && dividedHistory.notCompletedHistory.map((historyEntry, index) => (
-              <HistoryCardContainer key={index} index={index+1} historyEntry={historyEntry} />
+              <HistoryCardContainer key={index} index={index+1} historyEntry={historyEntry} redirectToSudoku={redirectToSudoku} />
             ))
           }
         </div>
