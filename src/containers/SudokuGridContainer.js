@@ -13,13 +13,24 @@ class SudokuGridContainer extends Component {
 
   render() {
     const {sudoku} = this.props;
-    return (
-      (sudoku) ? (
-        <SudokuGrid sudoku={sudoku} onChangeSave={this.onChangeSave} />
-      ) : (
-        <Spinner />
-      )
-    );
+    if ( this.props.sudoku && this.props.historyEntry ) {
+      const { historyEntry } = this.props;
+      return (
+        (sudoku) ? (
+          <SudokuGrid sudoku={sudoku} historyEntry={historyEntry} onChangeSave={this.onChangeSave} />
+        ) : (
+          <Spinner />
+        )
+      );
+    } else {
+      return (
+        (sudoku) ? (
+          <SudokuGrid sudoku={sudoku} onChangeSave={this.onChangeSave} />
+        ) : (
+          <Spinner />
+        )
+      );
+    }
   }
 }
 

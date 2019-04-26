@@ -69,7 +69,7 @@ class Header extends Component {
                 <DropdownMenu className='Header__button__dropdown__menu'>
                   <DropdownItem tag={Link} to='/'>Home</DropdownItem>
                   <DropdownItem disabled tag={Link} to='/profile'>Profile</DropdownItem>
-                  <DropdownItem disabled tag={Link} to='/history'>History</DropdownItem>
+                  <DropdownItem tag={Link} to='/history'>History</DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem onClick={this.handleLogout}>Logout</DropdownItem>
                 </DropdownMenu>

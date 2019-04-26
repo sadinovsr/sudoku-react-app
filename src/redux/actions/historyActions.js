@@ -1,5 +1,5 @@
 import SudokuAPI from '../../helpers/SudokuAPI';
-import { API, UPDATE_HISTORY_ENTRY_SUCCESS, UPDATE_HISTORY_ENTRY_ERROR } from '../../constants';
+import { API, UPDATE_HISTORY_ENTRY_SUCCESS, UPDATE_HISTORY_ENTRY_ERROR, GET_DIVIDED_HISTORY_SUCCESS, GET_DIVIDED_HISTORY_ERROR } from '../../constants';
 
 /* -------- actions -------- */
 
@@ -16,6 +16,19 @@ const updateHistoryEntryError = () => {
   }
 }
 
+const getDividedHistoryEntriesSuccess = res => {
+  return {
+    type: GET_DIVIDED_HISTORY_SUCCESS,
+    payload: res.data.payload
+  }
+}
+
+const getDividedHistoryEntriesError = () => {
+  return {
+    type: GET_DIVIDED_HISTORY_ERROR
+  }
+}
+
 /* ---- action creators ---- */
 
 export const updateHistoryEntry = (sudokuId, sudokuObject) => {
@@ -26,6 +39,18 @@ export const updateHistoryEntry = (sudokuId, sudokuObject) => {
       })
       .catch(err => {
         dispatch(updateHistoryEntryError());
+      })
+  }
+}
+
+export const getDividedHistoryEntries = () => {
+  return dispatch => {
+    return SudokuAPI.get(API.GET_DIVIDED_HISTORY)
+      .then(res => {
+        dispatch( getDividedHistoryEntriesSuccess( res ) );
+      })
+      .catch(err => {
+        dispatch( getDividedHistoryEntriesError() );
       })
   }
 }

@@ -3,6 +3,7 @@ export const API = {
   REGISTER: 'auth/register',
   GET_USER_SELF: 'users/self',
   GET_SUDOKU: 'sudoku/',
+  GET_DIVIDED_HISTORY: 'history/divided',
   HISTORY_ENTRY_EXISTS: 'history/sudoku/',
   UPDATE_HISTORY_ENTRY: 'history/',
   GET_RANDOMIZED_SUDOKU_BY_DIFFICULTY: 'sudoku/random/difficulty/',
@@ -31,3 +32,6 @@ export const LOGOUT_ERROR = 'LOGOUT_ERROR';
 
 export const GET_USER_SELF_SUCCESS = 'GET_USER_SELF_SUCCESS';
 export const GET_USER_SELF_ERROR = 'GET_USER_SELF_ERROR';
+
+export const GET_DIVIDED_HISTORY_SUCCESS = 'GET_DIVIDED_HISTORY_SUCCESS';
+export const GET_DIVIDED_HISTORY_ERROR = 'GET_DIVIDED_HISTORY_ERROR';
