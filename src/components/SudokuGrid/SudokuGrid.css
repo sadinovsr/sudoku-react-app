@@ -6,7 +6,9 @@
   text-align: center;
   width: 3.58vmax;
   height: 3.5vmax;
-  font-size: 2.3vmax;
+  font-size: 4vmin;
+  max-width: 8vmin;
+  max-height: 8vmin;
   color: transparent;
   text-shadow: 0 0 0 black;
   border: none;
@@ -20,6 +22,7 @@
 .SudokuGrid__table input:disabled {
   background-color: white;
   color: #2196f3;
+  opacity: 1;
   -webkit-opacity: 1;
 }
 
@@ -82,6 +85,48 @@ tr:nth-of-type(3n) {
   animation-name: incorrect;
   animation-duration: 4s;
 }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+/* ---== Mobile Devices ==--- */
+
+@media screen and (max-width: 400px) {
+  .SudokuGrid__table input {
+    width: 8vw;
+    height: 8vw;
+    max-width: unset;
+    max-height: unset;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .SudokuGrid__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* .SudokuGrid__controls .SudokuGrid__controls__button {
+    order: 1;
+  } */
+
+  .SudokuGrid__controls__button {
+    margin: 2px;;
+    order: 1;
+  }
+
+  .SudokuGrid__controls__timer {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+/* ---== Animations ==--- */
 
 @-webkit-keyframes correct {
   0%   {background-color: rgba(144, 238, 144, 0); color: rgba(23, 146, 23, 0); text-shadow: 3px 3px 0px rgba(0, 0, 0, 0)}
