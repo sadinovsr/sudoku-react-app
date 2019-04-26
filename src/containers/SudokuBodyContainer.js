@@ -10,20 +10,31 @@ class SudokuBodyContainer extends Component {
   constructor(props) {
     super(props);
 
-    if (this.props.location.state) {
-      this.returnSudoku(this.props.location.state.sudoku);
-    }
+    this.state = {
+      gotNewSudoku: false,
+    };
+    this.onLoad();
   }
 
-  returnSudoku ( sudoku ) {
+  async onLoad () {
+    if (this.props.location.state && !this.props.location.state.historyEntry) {
+      await this.returnSudoku(this.props.location.state.sudoku);
+      this.setState({
+        gotNewSudoku: true
+      });
+    } 
+  }
+
+
+  async returnSudoku ( sudoku ) {
     if ( localStorage.getItem('token') === null ) {
-      this.props.getSudoku(sudoku._id);
+      await this.props.getSudoku(sudoku._id);
     } else {
-      this.props
+      await this.props
         .checkSudokuStarted(sudoku._id)
-        .then( () => {
+        .then( async () => {
           if ( this.props.isStarted === false ) {
-            this.props.getSudoku(sudoku._id)
+            await this.props.getSudoku(sudoku._id)
           } else {
             this.props.getRandomizedSudokuByDifficulty(sudoku.difficulty)
               .then ( () => {
@@ -38,16 +49,30 @@ class SudokuBodyContainer extends Component {
   }
 
   render() {
-    const {sudoku} = this.props;
-    return (
-      (sudoku) ? (
-        <SudokuBody sudoku={sudoku} />
-      ) : (
-        <div className='SudokuSpinner'>
-          <Spinner style={{height: '3rem', width: '3rem'}}/>
-        </div>
-      )
-    );
+    if (this.props.location.state && this.props.location.state.historyEntry) {
+      const { sudoku, historyEntry } = this.props.location.state;
+      return (
+        (sudoku && historyEntry) ? (
+          <SudokuBody sudoku={sudoku} fromHistory={true} historyEntry={historyEntry} />
+        ) : (
+          <div className='SudokuSpinner'>
+            <Spinner style={{height: '3rem', width: '3rem'}}/>
+          </div>
+        )
+      );
+    } else {
+      const {gotNewSudoku} = this.state;
+      const {sudoku} = this.props;
+      return (
+        (sudoku && gotNewSudoku) ? (
+          <SudokuBody sudoku={sudoku} />
+        ) : (
+          <div className='SudokuSpinner'>
+            <Spinner style={{height: '3rem', width: '3rem'}}/>
+          </div>
+        )
+      );
+    }
   }
 }
 

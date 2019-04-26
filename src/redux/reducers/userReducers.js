@@ -5,12 +5,15 @@ import {
   LOGIN_ERROR,
   LOGOUT_SUCCESS,
   LOGOUT_ERROR,
+  GET_USER_SELF_SUCCESS,
+  GET_USER_SELF_ERROR,
 } from '../../constants';
 
 const defaultState = {
   isRegistered: false,
   isLoggedIn: false,
   errorMessage: null,
+  user: null,
 };
 
 export const registerReducer = (state = defaultState, action) => {
@@ -41,6 +44,17 @@ export const logoutReducer = (state = defaultState, action) => {
       return { ...state, isLoggedIn: false };
     case LOGOUT_ERROR: 
       return { ...state, isLoggedIn: true };
+    default:
+      return state;
+  }
+}
+
+export const getUserSelfReducer = (state = defaultState, action) => {
+  switch (action.type) {
+    case GET_USER_SELF_SUCCESS:
+      return { ...state, user: action.payload };
+    case GET_USER_SELF_ERROR:
+      return { ...state, user: null };
     default:
       return state;
   }

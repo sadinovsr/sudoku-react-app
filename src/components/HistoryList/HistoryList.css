@@ -1,0 +1,25 @@
+.HistoryList,
+.HistoryList__notCompleted,
+.HistoryList__completed {
+  padding: 10px;
+}
+
+.HistoryList__notCompleted {
+  margin-bottom: 20px;
+}
+
+.HistoryList h2 {
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@media screen and (max-width: 450px) {
+  .HistoryList {
+    padding: 0px;
+  }
+
+  .HistoryList__completed, .HistoryList__notCompleted {
+    padding: 2px;
+  }
+}

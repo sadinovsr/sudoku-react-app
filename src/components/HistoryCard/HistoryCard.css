@@ -1,0 +1,77 @@
+.HistoryCard {
+  margin: 3px;
+}
+
+.HistoryCard__container {
+  margin: 0px 5px 0px 5px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.oneLine {
+  margin: 3px 0px 3px 0px;
+}
+
+.HistoryCard__container__index {
+  width: 40px;
+  font-size: 20px;
+  padding-left: 5px;
+}
+
+.HistoryCard__container__difficulty {
+  width: 30%;
+  font-size: 20px;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+
+.HistoryCard__container__time {
+  width: 50px;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.HistoryCard__container__usedSolve {
+  width: 25%;
+  padding-right: 10px;
+  font-size: 20px;
+  font-weight: 200;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.HistoryCard__container__button {
+  margin: 3px 0px 3px 0px;
+  width: 25%;
+  padding-right: 10px;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.button {
+  text-transform: uppercase;
+  background: transparent;
+}
+
+.button:hover {
+  background-color: transparent;
+  color: lightgrey;
+}
+
+@media screen and (max-width: 600px) {
+  .HistoryCard__container div {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .HistoryCard__container__time {
+    display: none;
+  }
+
+  .HistoryCard__container__button, .HistoryCard__container__usedSolve {
+    width: 40%;
+  }
+}
