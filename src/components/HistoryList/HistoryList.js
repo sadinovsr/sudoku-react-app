@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import HistoryCard from '../HistoryCard/HistoryCard';
 import HistoryCardContainer from '../../containers/HistoryCardContainer';
 import './HistoryList.css';
 
