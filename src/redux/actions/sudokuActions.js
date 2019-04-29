@@ -1,5 +1,15 @@
 import SudokuAPI from '../../helpers/SudokuAPI';
-import { API, GET_RANDOMIZED_SUDOKU_BY_DIFFICULTY_SUCCESS, GET_RANDOMIZED_SUDOKU_BY_DIFFICULTY_ERROR, GET_SUDOKU_SUCCESS, GET_SUDOKU_ERROR, CHECK_SUDOKU_STARTED_SUCCESS, CHECK_SUDOKU_STARTED_ERROR } from '../../constants';
+import {
+  API,
+  GET_RANDOMIZED_SUDOKU_BY_DIFFICULTY_SUCCESS,
+  GET_RANDOMIZED_SUDOKU_BY_DIFFICULTY_ERROR,
+  GET_AUTHORIZED_RANDOMIZED_SUDOKU_BY_DIFFICULTY_SUCCESS,
+  GET_AUTHORIZED_RANDOMIZED_SUDOKU_BY_DIFFICULTY_ERROR,
+  GET_SUDOKU_SUCCESS,
+  GET_SUDOKU_ERROR,
+  CHECK_SUDOKU_STARTED_SUCCESS,
+  CHECK_SUDOKU_STARTED_ERROR
+} from '../../constants';
 
 /* -------- actions -------- */
 
@@ -13,6 +23,19 @@ const getRandomizedSudokuByDifficultySuccess = res => {
 const getRandomizedSudokuByDifficultyError = () => {
   return {
     type: GET_RANDOMIZED_SUDOKU_BY_DIFFICULTY_ERROR
+  }
+}
+
+const getAuthorizedRandomizedSudokuByDifficultySuccess = res => {
+  return {
+    type: GET_AUTHORIZED_RANDOMIZED_SUDOKU_BY_DIFFICULTY_SUCCESS,
+    payload: res.data.payload
+  }
+}
+
+const getAuthorizedRandomizedSudokuByDifficultyError = () => {
+  return {
+    type: GET_AUTHORIZED_RANDOMIZED_SUDOKU_BY_DIFFICULTY_ERROR
   }
 }
 
@@ -52,6 +75,18 @@ export const getRandomizedSudokuByDifficulty = difficulty => {
       })
       .catch(err => {
         dispatch(getRandomizedSudokuByDifficultyError());
+      })
+  }
+}
+
+export const getAuthorizedRandomizedSudokuByDifficulty = difficulty => {
+  return dispatch => {
+    return SudokuAPI.get(API.GET_AUTHORIZED_RANDOMIZED_SUDOKU_BY_DIFFICULTY + difficulty)
+      .then(res => {
+        dispatch(getAuthorizedRandomizedSudokuByDifficultySuccess(res));
+      })
+      .catch(err => {
+        dispatch(getAuthorizedRandomizedSudokuByDifficultyError());
       })
   }
 }
