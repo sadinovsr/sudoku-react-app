@@ -1,12 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import DifficultyList from "../components/DifficultyList/DifficultyList";
-import { getRandomizedSudokuByDifficulty } from "../redux/actions/sudokuActions";
+import { getAuthorizedRandomizedSudokuByDifficulty, getRandomizedSudokuByDifficulty } from "../redux/actions/sudokuActions";
 
 class DifficultyListContainer extends Component {
 
   onDifficultySelect = ( difficulty ) => {
-    this.props
+    if ( localStorage.getItem('token') ) {
+      this.props
+      .getAuthorizedRandomizedSudokuByDifficulty(difficulty)
+      .then( () => {
+        this.props.history.push({
+          pathname: '/sudoku',
+          state: { sudoku: this.props.sudokuAuth }
+        })
+      })
+      .catch( error => {
+        console.error(error);
+      })
+    } else {
+      this.props
       .getRandomizedSudokuByDifficulty(difficulty)
       .then( () => {
         this.props.history.push({
@@ -17,6 +30,7 @@ class DifficultyListContainer extends Component {
       .catch( error => {
         console.error(error);
       })
+    }
   }
 
   render() {
@@ -28,12 +42,14 @@ class DifficultyListContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    sudoku: state.getRandomizedSudokuByDifficultyReducer.sudoku
+    sudoku: state.getRandomizedSudokuByDifficultyReducer.sudoku,
+    sudokuAuth: state.getAuthorizedRandomizedSudokuByDifficultyReducer.sudoku
   };
 };
 
 const mapDispatchToProps = {
-  getRandomizedSudokuByDifficulty
+  getRandomizedSudokuByDifficulty,
+  getAuthorizedRandomizedSudokuByDifficulty,
 };
 
 export default connect(
