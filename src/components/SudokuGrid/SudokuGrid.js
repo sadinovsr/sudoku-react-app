@@ -50,16 +50,20 @@ class SudokuGrid extends Component {
   }
 
   onInputChange = e => {
-    let newState = this.state.gridObj;
-    newState[e.target.name] = e.target.value;
-    this.setState({ gridObj: newState });
-    if ( localStorage.getItem('token') ) {
-      let answer = objectToString(this.state.gridObj);
-      let sudokuObject = {
-        answer,
-        time: this.state.timer,
+    if ( parseInt(e.target.value) > 0 && parseInt(e.target.value) < 10 ) {
+      let newState = this.state.gridObj;
+      newState[e.target.name] = e.target.value;
+      this.setState({ gridObj: newState });
+      if ( localStorage.getItem('token') ) {
+        let answer = objectToString(this.state.gridObj);
+        let sudokuObject = {
+          answer,
+          time: this.state.timer,
+        }
+        this.props.onChangeSave(this.state.sudokuId, sudokuObject);
       }
-      this.props.onChangeSave(this.state.sudokuId, sudokuObject);
+    } else {
+      return;
     }
   };
 

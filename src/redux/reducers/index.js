@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { loginReducer, logoutReducer, registerReducer, getUserSelfReducer } from './userReducers';
-import { getRandomizedSudokuByDifficultyReducer, getSudokuReducer, checkSudokuStartedReducer } from './sudokuReducer';
+import { getRandomizedSudokuByDifficultyReducer, getAuthorizedRandomizedSudokuByDifficultyReducer, getSudokuReducer, checkSudokuStartedReducer } from './sudokuReducer';
 import { updateHistoryEntryReducer, getDividedHistoryEntriesReducer } from './historyReducer';
 
 const rootReducer = combineReducers({
@@ -9,6 +9,7 @@ const rootReducer = combineReducers({
   registerReducer,
   getUserSelfReducer,
   getRandomizedSudokuByDifficultyReducer,
+  getAuthorizedRandomizedSudokuByDifficultyReducer,
   getSudokuReducer,
   checkSudokuStartedReducer,
   updateHistoryEntryReducer,
