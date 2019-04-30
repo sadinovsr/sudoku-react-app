@@ -50,7 +50,7 @@ class SudokuGrid extends Component {
   }
 
   onInputChange = e => {
-    if ( parseInt(e.target.value) > 0 && parseInt(e.target.value) < 10 ) {
+    if ( ( parseInt(e.target.value) > 0 && parseInt(e.target.value) < 10 ) || e.target.value === '' ) {
       let newState = this.state.gridObj;
       newState[e.target.name] = e.target.value;
       this.setState({ gridObj: newState });
