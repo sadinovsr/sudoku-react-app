@@ -19,7 +19,9 @@ class MainBody extends Component {
               <Switch>
                 <Route exact path='/' component={DifficultyContainer} />
                 <Route exact path='/sudoku' component={SudokuBodyContainer} />
+                <Route path='/history/*' component={PageNotFound} />
                 <ProtectedRoute path='/history' component={HistoryListContainer} />
+                <Route path='/profile/*' component={PageNotFound} />
                 <ProtectedRoute path='/profile' component={ProfileCardContainer} />
                 <Route path="*" component={PageNotFound} />
               </Switch>

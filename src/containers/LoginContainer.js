@@ -14,12 +14,11 @@ class LoginContainer extends Component {
   }
 
   render() {
-    let { isLoggedIn, errorMessage } = this.props;
-    
-    if ( !localStorage.getItem('token') ) {
-      return <Login onLogin={this.onLogin} errorMessage={errorMessage} isLoggedIn={isLoggedIn}/>
-    } else {
+    const { isLoggedIn, errorMessage } = this.props;
+    if ( localStorage.getItem('token') && isLoggedIn ) {
       return <Redirect to='/' />
+    } else {
+      return <Login onLogin={this.onLogin} errorMessage={errorMessage} isLoggedIn={isLoggedIn}/>
     }
   }
 }
