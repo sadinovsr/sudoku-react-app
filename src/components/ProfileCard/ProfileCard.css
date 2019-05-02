@@ -1,0 +1,101 @@
+.ProfileCard {
+  margin: 15px 10px 10px 10px;
+}
+
+.ProfileCard__username {
+  font-weight: 200;
+  font-size: 56px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.ProfileCard__information {
+  padding: 10px 0px 10px 0px;
+  margin: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.ProfileCard__information__label {
+  text-transform: uppercase;
+  color: lightgray;
+}
+
+.ProfileCard__information__text {
+  font-weight: 200;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: black;
+}
+
+.ProfileCard__statistics {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.ProfileCard__statistics__container {
+  width: 25%;
+  padding: 25px 0px;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.ProfileCard__statistics__divider {
+  width: 1px;
+  border-right: 1px solid lightgray;
+  align-self: stretch;
+}
+
+.ProfileCard__statistics__label {
+  font-weight: 200;
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: dodgerblue;
+}
+
+@media screen and (max-width: 800px) {
+  .ProfileCard__username {
+    font-size: 48px;
+    letter-spacing: 3px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .ProfileCard__information {
+    flex-direction: column;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    align-items: center;
+  }
+
+  .ProfileCard__statistics {
+    flex-direction: column;
+  }
+
+  .ProfileCard__username {
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: 0px;
+  }
+
+  .ProfileCard__information__text {
+    font-size: 18px;
+  }
+
+  .ProfileCard__statistics__container {
+    align-self: center;
+    width: 100%;
+    padding: 10px 0px 15px 0px;;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .ProfileCard__statistics__container:last-of-type {
+    border-bottom: 0;
+  }
+
+  .ProfileCard__statistics__divider {
+    display: none;
+  }
+}
