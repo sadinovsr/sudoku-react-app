@@ -60,7 +60,7 @@
 
 /* ---== Mobile Devices ==--- */
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   /* .Header {
     height: 85px;
     display: flex;

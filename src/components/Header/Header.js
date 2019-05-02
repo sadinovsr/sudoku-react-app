@@ -66,9 +66,9 @@ class Header extends Component {
                     }
                   </span>
                 </DropdownToggle>
-                <DropdownMenu className='Header__button__dropdown__menu'>
+                <DropdownMenu right className='Header__button__dropdown__menu'>
                   <DropdownItem tag={Link} to='/'>Home</DropdownItem>
-                  <DropdownItem disabled tag={Link} to='/profile'>Profile</DropdownItem>
+                  <DropdownItem tag={Link} to='/profile'>Profile</DropdownItem>
                   <DropdownItem tag={Link} to='/history'>History</DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem onClick={this.handleLogout}>Logout</DropdownItem>
