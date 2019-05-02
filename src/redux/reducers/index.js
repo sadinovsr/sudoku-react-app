@@ -5,7 +5,6 @@ import { updateHistoryEntryReducer, getDividedHistoryEntriesReducer, getHistoryS
 
 const rootReducer = combineReducers({
   loginReducer,
-  // logoutReducer,
   registerReducer,
   getUserSelfReducer,
   getRandomizedSudokuByDifficultyReducer,
