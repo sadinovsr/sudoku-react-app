@@ -22,7 +22,7 @@ class HeaderContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.logoutReducer.isLoggedIn,
+    isLoggedIn: state.loginReducer.isLoggedIn,
     user: state.getUserSelfReducer.user
   }
 };

@@ -4,6 +4,7 @@ import { Container, Row, Col, Card } from 'reactstrap';
 import DifficultyContainer from '../../containers/DifficultyListContainer';
 import SudokuBodyContainer from '../../containers/SudokuBodyContainer';
 import HistoryListContainer from '../../containers/HistoryListContainer';
+import ProfileCardContainer from '../../containers/ProfileCardContainer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import PageNotFound from '../../components/PageNotFound/PageNotFound';
 import './MainBody.css';
@@ -18,7 +19,10 @@ class MainBody extends Component {
               <Switch>
                 <Route exact path='/' component={DifficultyContainer} />
                 <Route exact path='/sudoku' component={SudokuBodyContainer} />
+                <Route path='/history/*' component={PageNotFound} />
                 <ProtectedRoute path='/history' component={HistoryListContainer} />
+                <Route path='/profile/*' component={PageNotFound} />
+                <ProtectedRoute path='/profile' component={ProfileCardContainer} />
                 <Route path="*" component={PageNotFound} />
               </Switch>
             </Card>

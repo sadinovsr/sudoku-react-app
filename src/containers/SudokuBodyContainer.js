@@ -8,6 +8,10 @@ import { Spinner } from 'reactstrap';
 
 class SudokuBodyContainer extends Component {
 
+  redirectToHome = () => {
+    this.props.history.push('/');
+  }
+
   render() {
     if (this.props.location.state && this.props.location.state.historyEntry) {
       const { sudoku, historyEntry } = this.props.location.state;
@@ -21,16 +25,22 @@ class SudokuBodyContainer extends Component {
         )
       );
     } else {
-      const { sudoku } = this.props.location.state;
-      return (
-        (sudoku) ? (
-          <SudokuBody sudoku={sudoku} />
-        ) : (
-          <div className='SudokuSpinner'>
-            <Spinner style={{height: '3rem', width: '3rem'}}/>
-          </div>
+      if ( this.props.location.state ) {
+        const { sudoku } = this.props.location.state;
+        return (
+          (sudoku) ? (
+            <SudokuBody sudoku={sudoku} />
+          ) : (
+            <div className='SudokuSpinner'>
+              <Spinner style={{height: '3rem', width: '3rem'}}/>
+            </div>
+          )
+        );
+      } else {
+        return (
+          <div>{this.redirectToHome()}</div>
         )
-      );
+      }
     }
   }
 }
