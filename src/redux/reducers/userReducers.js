@@ -22,6 +22,8 @@ export const registerReducer = (state = defaultState, action) => {
       return { ...state, isRegistered: true, errorMessage: null };
     case REGISTER_ERROR:
       return { ...state, isRegistered: false, errorMessage: action.payload };
+    case LOGOUT_SUCCESS:
+      return { ...state, isRegistered: false, errorMessage: null };
     default:
       return state;
   }
@@ -33,13 +35,6 @@ export const loginReducer = (state = defaultState, action) => {
       return { ...state, isLoggedIn: true, errorMessage: null };
     case LOGIN_ERROR:
       return { ...state, isLoggedIn: false, errorMessage: action.payload };
-    default:
-      return state;
-  }
-}
-
-export const logoutReducer = (state = defaultState, action) => {
-  switch (action.type) {
     case LOGOUT_SUCCESS:
       return { ...state, isLoggedIn: false };
     case LOGOUT_ERROR: 

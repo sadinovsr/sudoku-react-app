@@ -11,15 +11,21 @@ class LoginContainer extends Component {
       return;
     }
     this.props.login(username, password);
+    
+  }
+
+  redirectToHome = () => {
+    this.props.history.push('/');
   }
 
   render() {
     let { isLoggedIn, errorMessage } = this.props;
     
-    if ( !localStorage.getItem('token') ) {
-      return <Login onLogin={this.onLogin} errorMessage={errorMessage} isLoggedIn={isLoggedIn}/>
-    } else {
+    if ( localStorage.getItem('token') && isLoggedIn ) {
+      // return <div>{this.redirectToHome()}</div>
       return <Redirect to='/' />
+    } else {
+      return <Login onLogin={this.onLogin} errorMessage={errorMessage} isLoggedIn={isLoggedIn}/>
     }
   }
 }
