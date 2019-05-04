@@ -21,7 +21,7 @@ class ProfileCardContainer extends Component {
       (user) ? (
         <ProfileCard user={user} statistics={statistics} />
       ) : (
-        <Spinner color='light' size='lg' />
+        <Spinner size='lg' />
       )
     )
   }

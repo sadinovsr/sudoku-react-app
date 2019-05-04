@@ -1,0 +1,141 @@
+.AdminDashboard {
+  margin: 25px 20px 20px 20px;
+  max-height: 78vh;
+  display: flex
+}
+
+.AdminDashboard__information {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-right: 10px;
+  width: 75%
+}
+
+.AdminDashboard__userList {
+  padding: 2px;
+  padding-left: 5px;
+  border-left: 1px solid lightgray;
+  width: 25%;
+  overflow-y: auto;
+}
+
+.AdminDashboard__userList__title {
+  padding: 0px 0px 5px 0px;
+  font-size: 24px;
+}
+
+.AdminDashboard__userList__user {
+  padding: 2px 10px;
+  text-align: right;
+  overflow: hidden;
+  text-transform: uppercase;
+  font-size: 18px;
+  border-bottom: 1px solid rgb(231, 231, 231);
+  color: dodgerblue;
+}
+
+.AdminDashboard__userList__user__text {
+  display: block;
+  margin-right: 20px;
+  text-overflow: clip;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.AdminDashboard__information__container {
+  width: 50%;
+  margin: auto;
+}
+
+.AdminDashboard__information__value {
+  color: dodgerblue;
+  font-size: 50px;
+  font-weight: 800;
+}
+
+.AdminDashboard__information__label {
+  padding: 0px auto;
+}
+
+.AdminDashboard__information__label__title {
+  font-size: 30px;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+
+.AdminDashboard__information__label__description {
+  color: rgb(146, 146, 146);
+  width: 70%;
+  margin: auto;
+  font-size: 14px;
+}
+
+.AdminDashboard__userList__user:last-of-type {
+  border-bottom: 0;
+}
+
+.AdminDashboard__userList::-webkit-scrollbar {
+  width: 5px;
+}
+
+.AdminDashboard__userList::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: lightgray; 
+}
+ 
+.AdminDashboard__userList::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgb(173, 173, 173); 
+}
+
+.AdminDashboard__userList::-webkit-scrollbar-thumb:hover {
+  background: rgb(110, 110, 110); 
+}
+
+@media screen and (max-width: 770px) {
+  .AdminDashboard {
+    max-height: unset;
+  }
+
+  .AdminDashboard__information {
+    width: 60%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .AdminDashboard__information__container {
+    width: 100%;
+    padding: 10px 0px;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .AdminDashboard__userList {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .AdminDashboard {
+    flex-direction: column;
+  }
+
+  .AdminDashboard__information {
+    width: 100%;
+  }
+
+  .AdminDashboard__userList {
+    margin-top: 20px;
+    width: 100%;
+    height: 90vh;
+    border: 0;
+  }
+
+  .AdminDashboard__userList__user {
+    text-align: center;
+  }
+
+  .AdminDashboard__userList__user__text {
+    margin: 0;
+  }
+}
