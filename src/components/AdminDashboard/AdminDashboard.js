@@ -38,13 +38,22 @@ class AdminDashboard extends Component {
     this.setState({
       userCard: {
         isOpen: false,
-        user: {}
+        user: {},
+      }
+    })
+  }
+
+  handleDelete = userId => {
+    this.props.onDeleteUser(userId);
+    this.setState({
+      userCard: {
+        isOpen: false,
+        user: {},
       }
     })
   }
 
   render() {
-    console.log(this.props);
     const { adminDashboardData } = this.props;
     const { userCard } = this.state;
     let sortedUsers = [];
@@ -55,7 +64,6 @@ class AdminDashboard extends Component {
       adminDashboardData && adminDashboardData.users ? (
       <div className='AdminDashboard'>
         <div className='AdminDashboard__information'>
-        {/* ----------------------- */}
           <div className='AdminDashboard__information__container'>
             <div className='AdminDashboard__information__value'>
               {adminDashboardData.lastWeekNewUserCount}
@@ -69,7 +77,6 @@ class AdminDashboard extends Component {
               </div>
             </div>
           </div>
-        {/* ----------------------- */}
           <div className='AdminDashboard__information__container'>
             <div className='AdminDashboard__information__value'>
               {adminDashboardData.sudokuCount}
@@ -83,7 +90,6 @@ class AdminDashboard extends Component {
               </div>
             </div>
           </div>
-        {/* ----------------------- */}
         <div className='AdminDashboard__information__container'>
             <div className='AdminDashboard__information__value'>
               {adminDashboardData.completedSudokuCount}
@@ -97,7 +103,6 @@ class AdminDashboard extends Component {
               </div>
             </div>
           </div>
-        {/* ----------------------- */}
         <div className='AdminDashboard__information__container'>
             <div title={`${adminDashboardData.usedSolveSudokuCount}/${adminDashboardData.completedSudokuCount}`} className='AdminDashboard__information__value'>
               {`${Math.round((adminDashboardData.usedSolveSudokuCount / adminDashboardData.completedSudokuCount)*100)}%`}
@@ -111,7 +116,6 @@ class AdminDashboard extends Component {
               </div>
             </div>
           </div>
-
         </div>
         <div className='AdminDashboard__userList'>
           <div title='Newest users on top' className='AdminDashboard__userList__title'>Users</div>
@@ -125,7 +129,7 @@ class AdminDashboard extends Component {
             })
           }
         </div>
-        {userCard.isOpen && <UserCard user={userCard.user} onClose={this.onCloseUserCard} />}
+        {userCard.isOpen && <UserCard user={userCard.user} onClose={this.onCloseUserCard} handleDelete={this.handleDelete} />}
       </div>
       ) : (
         <Spinner size='lg' />

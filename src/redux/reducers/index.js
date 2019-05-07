@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { loginReducer, registerReducer, getUserSelfReducer } from './userReducers';
 import { getRandomizedSudokuByDifficultyReducer, getAuthorizedRandomizedSudokuByDifficultyReducer, getSudokuReducer, checkSudokuStartedReducer } from './sudokuReducer';
 import { updateHistoryEntryReducer, getDividedHistoryEntriesReducer, getHistoryStatisticsReducer } from './historyReducer';
-import { getAdminDashboardDataReducer } from './adminReducer';
+import { getAdminDashboardDataReducer, deleteUserReducer } from './adminReducer';
 
 const rootReducer = combineReducers({
   loginReducer,
@@ -16,6 +16,7 @@ const rootReducer = combineReducers({
   getDividedHistoryEntriesReducer,
   getHistoryStatisticsReducer,
   getAdminDashboardDataReducer,
+  deleteUserReducer,
 });
 
 export default rootReducer;

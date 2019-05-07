@@ -11,7 +11,7 @@ class UserCard extends Component {
   }
 
   render() {
-    const { onClose, user } = this.props;
+    const { onClose, handleDelete, user } = this.props;
 
     return (
       <div className="UserCard">
@@ -33,7 +33,7 @@ class UserCard extends Component {
 
           <div className="UserCard__buttons">
             <Button onClick={onClose} >Close</Button>
-            <Button color='danger'>Delete</Button>
+            <Button onClick={() => handleDelete(user._id)} color='danger'>Delete</Button>
           </div>
         </div>
       </div>

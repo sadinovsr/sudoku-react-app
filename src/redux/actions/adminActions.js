@@ -1,6 +1,8 @@
 import SudokuAPI from '../../helpers/SudokuAPI';
 import {
   API,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_ERROR,
   GET_ADMIN_DASHBOARD_DATA_SUCCESS,
   GET_ADMIN_DASHBOARD_DATA_ERROR,
 } from '../../constants';
@@ -20,6 +22,19 @@ const getAdminDashboardDataError = () => {
   }
 }
 
+const deleteUserSuccess = res => {
+  return {
+    type: DELETE_USER_SUCCESS,
+    payload: res.payload,
+  }
+}
+
+const deleteUserError = () => {
+  return {
+    type: DELETE_USER_ERROR,
+  }
+}
+
 /* ---- action creators ---- */
 
 export const getAdminDashboardData = () => {
@@ -30,6 +45,18 @@ export const getAdminDashboardData = () => {
       })
       .catch(err => {
         dispatch(getAdminDashboardDataError());
+      })
+  }
+}
+
+export const deleteUser = userId => {
+  return dispatch => {
+    return SudokuAPI.delete(API.DELETE_USER + userId)
+      .then(res => {
+        dispatch(deleteUserSuccess(res));
+      })
+      .catch(err => {
+        dispatch(deleteUserError());
       })
   }
 }
