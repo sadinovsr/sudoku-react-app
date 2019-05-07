@@ -16,7 +16,7 @@ class ProfileCard extends Component {
       user && statistics ? (
         <div className='ProfileCard'>
           <div className='ProfileCard__username'>
-            {user.username}
+            {user.username} 
           </div>
           <hr></hr>
           <div className='ProfileCard__information'>

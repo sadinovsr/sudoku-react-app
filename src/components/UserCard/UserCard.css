@@ -1,0 +1,62 @@
+.UserCard {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.459);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.UserCard__content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.UserCard__content__title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.UserCard__content__label {
+  text-transform: uppercase;
+  color: lightgray;
+}
+
+.UserCard__content__text {
+  font-weight: 200;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: black;
+}
+
+.UserCard__buttons {
+  margin-top: 20px;
+}
+
+.UserCard__buttons button {
+  margin: 0px 20px 0px 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .UserCard__content {
+    max-width: 98vw;
+  }
+
+  .UserCard__content__title {
+    font-size: 7vw;
+  }
+
+  .UserCard__content__text {
+    font-size: 5vw;
+  }
+}
