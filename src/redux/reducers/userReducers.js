@@ -7,11 +7,14 @@ import {
   LOGOUT_ERROR,
   GET_USER_SELF_SUCCESS,
   GET_USER_SELF_ERROR,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
 } from '../../constants';
 
 const defaultState = {
   isRegistered: false,
   isLoggedIn: false,
+  isUpdated: false,
   errorMessage: null,
   user: null,
 };
@@ -50,6 +53,17 @@ export const getUserSelfReducer = (state = defaultState, action) => {
       return { ...state, user: action.payload };
     case GET_USER_SELF_ERROR:
       return { ...state, user: null };
+    default:
+      return state;
+  }
+}
+
+export const updateUserReducer = (state = defaultState, action) => {
+  switch (action.type) {
+    case UPDATE_USER_SUCCESS:
+      return { ...state, isUpdated: true };
+    case UPDATE_USER_ERROR:
+      return { ...state, isUpdated: false };
     default:
       return state;
   }
