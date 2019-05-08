@@ -10,6 +10,8 @@ import {
   LOGOUT_ERROR,
   GET_USER_SELF_SUCCESS,
   GET_USER_SELF_ERROR,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
 } from '../../constants';
 
 /* ------ actions ------ */
@@ -73,6 +75,18 @@ const getUserSelfError = () => {
   }
 }
 
+const updateUserSuccess = () => {
+  return {
+    type: UPDATE_USER_SUCCESS,
+  }
+}
+
+const updateUserError = () => {
+  return {
+    type: UPDATE_USER_ERROR,
+  }
+}
+
 /* ------ action creators ------ */
 
 export const register = (username, email, password) => {
@@ -119,5 +133,23 @@ export const getUserSelf = () => {
     return SudokuAPI.get(API.GET_USER_SELF)
       .then( res => dispatch( getUserSelfSuccess( res ) ) )
       .catch( () => dispatch( getUserSelfError() ) );
+  }
+}
+
+export const updateUser = (userId, newUserObject) => {
+  return dispatch => {
+    console.log(newUserObject);
+    if ( newUserObject.password ) {
+      newUserObject.password = CryptoJS.SHA256(newUserObject.password).toString()
+    }
+    return SudokuAPI.call('patch', API.UPDATE_USER + userId, newUserObject)
+      .then(res => {
+        console.log(res);
+        dispatch(updateUserSuccess());
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(updateUserError());
+      })
   }
 }
