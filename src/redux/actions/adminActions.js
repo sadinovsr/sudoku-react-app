@@ -5,6 +5,8 @@ import {
   DELETE_USER_ERROR,
   GET_ADMIN_DASHBOARD_DATA_SUCCESS,
   GET_ADMIN_DASHBOARD_DATA_ERROR,
+  POST_SUDOKU_SUCCESS,
+  POST_SUDOKU_ERROR,
 } from '../../constants';
 
 /* -------- actions -------- */
@@ -35,6 +37,19 @@ const deleteUserError = () => {
   }
 }
 
+const addSudokuSuccess = res => {
+  return {
+    type: POST_SUDOKU_SUCCESS,
+    payload: res.payload,
+  }
+}
+
+const addSudokuError = () => {
+  return {
+    type: POST_SUDOKU_ERROR,
+  }
+}
+
 /* ---- action creators ---- */
 
 export const getAdminDashboardData = () => {
@@ -57,6 +72,18 @@ export const deleteUser = userId => {
       })
       .catch(err => {
         dispatch(deleteUserError());
+      })
+  }
+}
+
+export const addSudoku = sudokuObject => {
+  return dispatch => {
+    return SudokuAPI.post(API.POST_SUDOKU, sudokuObject)
+      .then(res => {
+        dispatch(addSudokuSuccess(res));
+      })
+      .catch(err => {
+        dispatch(addSudokuError());
       })
   }
 }

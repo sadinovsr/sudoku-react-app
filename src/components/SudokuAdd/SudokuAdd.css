@@ -1,0 +1,104 @@
+.SudokuAdd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
+}
+
+.SudokuAdd__alert {
+  width: 50%;
+}
+
+.SudokuAdd__table {
+  margin: auto;
+}
+
+.SudokuAdd__table input {
+  text-align: center;
+  width: 3.48vmax;
+  height: 3.4vmax;
+  font-size: 4vmin;
+  max-width: 8vmin;
+  max-height: 8vmin;
+  color: transparent;
+  text-shadow: 0 0 0 black;
+  border: none;
+}
+
+.SudokuAdd__table input:focus {
+  background-color: #d9eeff;
+  outline: none;
+}
+
+.SudokuAdd__table input:disabled {
+  background-color: white;
+  color: #2196f3;
+  opacity: 1;
+  -webkit-opacity: 1;
+}
+
+table {
+  border: 3px solid black;
+}
+
+td {
+  border: 1px solid black;
+  padding: 0px;
+}
+
+td:nth-of-type(3n) {
+  border-right: 3px solid black;
+}
+
+tr:nth-of-type(3n) {
+  border-bottom: 3px solid black;
+}
+
+.SudokuAdd__controls {
+  display: flex;
+  vertical-align: center;
+  margin: 8px auto;
+  font-size: 32px;
+  font-weight: 200;
+  width: 50%;
+}
+
+.SudokuAdd__controls__button {
+  margin-left: 20px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+/* ---== Mobile Devices ==--- */
+
+@media screen and (max-width: 400px) {
+  .SudokuAdd__table input {
+    width: 8vw;
+    height: 8vw;
+    max-width: unset;
+    max-height: unset;
+  }
+
+  .SudokuAdd__controls {
+    width: 85%;
+  }
+
+  .SudokuAdd__alert {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .SudokuAdd__controls__button {
+    margin-left: 2px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .SudokuAdd__controls__input__addon {
+    display: none;
+  }
+}

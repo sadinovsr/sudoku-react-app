@@ -3,6 +3,7 @@ export const API = {
   REGISTER: 'auth/register',
   GET_USER_SELF: 'users/self',
   GET_SUDOKU: 'sudoku/',
+  POST_SUDOKU: 'sudoku/',
   GET_DIVIDED_HISTORY: 'history/divided',
   HISTORY_ENTRY_EXISTS: 'history/sudoku/',
   UPDATE_HISTORY_ENTRY: 'history/',
@@ -51,3 +52,6 @@ export const GET_ADMIN_DASHBOARD_DATA_ERROR = 'GET_ADMIN_DASHBOARD_DATA_ERROR';
 
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 export const DELETE_USER_ERROR = 'DELETE_USER_ERROR';
+
+export const POST_SUDOKU_SUCCESS = 'POST_SUDOKU_SUCCESS';
+export const POST_SUDOKU_ERROR = 'POST_SUDOKU_ERROR';
