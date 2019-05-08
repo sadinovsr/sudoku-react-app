@@ -25,6 +25,12 @@ class APIClass {
     return this.call('post', url, data);
   }
 
+  delete(url, data) {
+    return this.call('delete', url, {
+      headers: this.getDefaultHeaders()
+    })
+  }
+
   call(method, url, data) {
     return this.instance[method](url, data, {
       method,

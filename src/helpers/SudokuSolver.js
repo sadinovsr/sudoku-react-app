@@ -108,8 +108,12 @@ const arrayToString = array => {
 }
 
 export const solveSudoku = object => {
-  let board = makeBoard(object);
-  let emptyPositions = saveEmptyPositions(board);
-  let solvedPuzzle = solvePuzzle(board, emptyPositions);
-  return arrayToString(solvedPuzzle);
+  try {
+    let board = makeBoard(object);
+    let emptyPositions = saveEmptyPositions(board);
+    let solvedPuzzle = solvePuzzle(board, emptyPositions);
+    return arrayToString(solvedPuzzle);
+  } catch {
+    return null;
+  }
 };

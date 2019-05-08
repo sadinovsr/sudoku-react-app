@@ -71,6 +71,17 @@ class Header extends Component {
                   <DropdownItem tag={Link} to='/profile'>Profile</DropdownItem>
                   <DropdownItem tag={Link} to='/history'>History</DropdownItem>
                   <DropdownItem divider />
+                  {
+                    this.props.user && this.props.user.level === 'admin' ? (
+                      <React.Fragment>
+                        <DropdownItem tag={Link} to='/admin'>Dashboard</DropdownItem>
+                        <DropdownItem tag={Link} to='/add'>Add Sudoku</DropdownItem>
+                        <DropdownItem divider />
+                      </React.Fragment>
+                    ) : (
+                      <React.Fragment/>
+                    )
+                  }
                   <DropdownItem onClick={this.handleLogout}>Logout</DropdownItem>
                 </DropdownMenu>
               </ButtonDropdown>

@@ -1,7 +1,7 @@
 function hasDuplicates(array) {
-  var valuesSoFar = {};
-  for (var i = 0; i < array.length; ++i) {
-      var value = array[i];
+  let valuesSoFar = {};
+  for (let i = 0; i < array.length; i++) {
+      let value = array[i];
       if (value in valuesSoFar) {
           return true;
       }
@@ -10,7 +10,7 @@ function hasDuplicates(array) {
   return false;
 }
 
-export const sudokuChecker = sudoku => {
+export const sudokuChecker = ( sudoku, fromAdd ) => {
   const boxes = {
     1: ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3'],
     2: ['A4', 'A5', 'A6', 'B4', 'B5', 'B6', 'C4', 'C5', 'C6'],
@@ -44,7 +44,11 @@ export const sudokuChecker = sudoku => {
     let valueArr = [];
     for (let j = 0; j < 9; j++) {
       if (sudoku[rows[i] + columns[j]] < '1' || sudoku[rows[i] + columns[j]] > '9') {
-        return false;
+        if ( fromAdd ) {
+          continue;
+        } else {
+          return false;
+        }
       }
       valueArr.push(sudoku[rows[i] + columns[j]]);
     }
@@ -58,7 +62,11 @@ export const sudokuChecker = sudoku => {
     let valueArr = [];
     for (let j = 0; j < 9; j++) {
       if (sudoku[rows[j] + columns[i]] < '1' || sudoku[rows[j] + columns[i]] > '9') {
-        return false;
+        if ( fromAdd ) {
+          continue;
+        } else {
+          return false;
+        }
       }
       valueArr.push(sudoku[rows[j] + columns[i]]);
     }

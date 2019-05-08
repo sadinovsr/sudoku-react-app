@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import { Progress } from 'reactstrap';
+import { Progress, Button } from 'reactstrap';
+import UserEdit from '../UserEdit/UserEdit';
 import './ProfileCard.css';
 
 class ProfileCard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isEditOpen: false,
+    };
+  }
 
   convertDate = (date) => {
     const newDate = new Date(date);
@@ -10,13 +18,40 @@ class ProfileCard extends Component {
     return stringDate.slice(4, 16);
   }
 
+  onEditOpen = () => {
+    this.setState({
+      isEditOpen: true,
+    })
+  }
+
+  onEditClose = () => {
+    this.setState({
+      isEditOpen: false,
+    })
+  }
+
+  onUserUpdate = (userId, newUserObject) => {
+    this.setState({
+      isEditOpen: false,
+    });
+    if ( this.props.user.username === newUserObject.username && newUserObject.password === '' ) {
+      this.props.onUpdate(userId, newUserObject, false);
+    } else {
+      this.props.onUpdate(userId, newUserObject, true);
+    }
+  }
+
   render() {
+    const { isEditOpen } = this.state;
     const { user, statistics } = this.props;
     return (
       user && statistics ? (
         <div className='ProfileCard'>
           <div className='ProfileCard__username'>
-            {user.username}
+            {user.username} 
+          </div>
+          <div className='ProfileCard__edit'>
+            <Button onClick={() => this.onEditOpen()} outline color='primary'>Edit Profile</Button>
           </div>
           <hr></hr>
           <div className='ProfileCard__information'>
@@ -68,6 +103,7 @@ class ProfileCard extends Component {
                 <Progress value={statistics.usedSolveCount} max={statistics.doneCount} />
               </div>
             </div>
+            {isEditOpen && <UserEdit user={user} onClose={this.onEditClose} onUserUpdate={this.onUserUpdate} />}
           </div>
         </div>
       ) : ( 

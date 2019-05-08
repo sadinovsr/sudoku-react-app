@@ -68,7 +68,7 @@ class SudokuGrid extends Component {
   };
 
   onCheck = () => {
-    if ( sudokuChecker(this.state.gridObj) ) {
+    if ( sudokuChecker(this.state.gridObj, false) ) {
       this.setState({
         isChecked: true,
         isCorrect: true,
@@ -93,20 +93,22 @@ class SudokuGrid extends Component {
 
   onSolve = () => {
     let solution = solveSudoku(this.state.initialGrid);
-    let newGrid = gridCreator(solution);
-    this.setState({
-      gridObj: newGrid,
-      doUpdates: false
-    })
-    if ( localStorage.getItem('token') ) {
-      let answer = objectToString(newGrid);
-      let sudokuObject = {
-        answer,
-        time: this.state.timer,
-        completed: true,
-        usedSolve: true
+    if ( solution ) {
+      let newGrid = gridCreator(solution);
+      this.setState({
+        gridObj: newGrid,
+        doUpdates: false
+      })
+      if ( localStorage.getItem('token') ) {
+        let answer = objectToString(newGrid);
+        let sudokuObject = {
+          answer,
+          time: this.state.timer,
+          completed: true,
+          usedSolve: true
+        }
+        this.props.onChangeSave(this.state.sudokuId, sudokuObject)
       }
-      this.props.onChangeSave(this.state.sudokuId, sudokuObject)
     }
   }
 
