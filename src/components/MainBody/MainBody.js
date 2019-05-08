@@ -6,6 +6,7 @@ import SudokuBodyContainer from '../../containers/SudokuBodyContainer';
 import HistoryListContainer from '../../containers/HistoryListContainer';
 import ProfileCardContainer from '../../containers/ProfileCardContainer';
 import AdminDashboardContainer from '../../containers/AdminDashboardContainer';
+import SudokuAddContainer from '../../containers/SudokuAddContainer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import PageNotFound from '../../components/PageNotFound/PageNotFound';
 import './MainBody.css';
@@ -26,6 +27,8 @@ class MainBody extends Component {
                 <ProtectedRoute path='/profile' component={ProfileCardContainer} />
                 <Route path='/admin/*' component={PageNotFound} />
                 <ProtectedRoute path='/admin' component={AdminDashboardContainer} />
+                <Route path='/add/*' component={PageNotFound} />
+                <ProtectedRoute path='/add' component={SudokuAddContainer} />
                 <Route path="*" component={PageNotFound} />
               </Switch>
             </Card>

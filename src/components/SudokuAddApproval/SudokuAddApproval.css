@@ -1,0 +1,59 @@
+.SudokuAddApproval {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.459);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SudokuAddApproval__content {
+  background-color: white;
+  margin: 5px;
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.SudokuAddApproval__content__text {
+  font-size: 18px;
+  color: black;
+}
+
+.SudokuAddApproval__buttons {
+  width: 80%;
+  margin-top: 20px;
+}
+
+.SudokuAddApproval__buttons button {
+  width: 40%;
+  margin: 0px 20px 0px 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .SudokuAddApproval__content {
+    max-width: 98vw;
+  }
+
+  .SudokuAddApproval__content__text {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .SudokuAddApproval__buttons {
+    width: 100%;
+  }
+
+  .SudokuAddApproval__buttons button {
+    width: 70%;
+    margin: 0px 20px 0px 20px;
+  }
+}
