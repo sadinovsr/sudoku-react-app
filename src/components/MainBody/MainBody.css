@@ -1,3 +1,14 @@
-.SudokuSpinner {
+.SudokuError {
   margin: 50px;
+}
+
+.SudokuError__message {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.SudokuError__options {
+  padding: 20px 20px 0px 20px;
+  font-size: 22px;
+  font-weight: 200;
 }
