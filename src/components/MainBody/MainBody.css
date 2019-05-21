@@ -12,3 +12,12 @@
   font-size: 22px;
   font-weight: 200;
 }
+
+.div-link {
+  color: #007BFF;
+  cursor: pointer;
+}
+.div-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
