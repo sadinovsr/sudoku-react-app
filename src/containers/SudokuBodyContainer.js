@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import SudokuBody from "../components/SudokuBody/SudokuBody";
 import { getSudoku, checkSudokuStarted } from "../redux/actions/sudokuActions";
 import { getRandomizedSudokuByDifficulty } from "../redux/actions/sudokuActions";
@@ -19,21 +20,32 @@ class SudokuBodyContainer extends Component {
         (sudoku && historyEntry) ? (
           <SudokuBody sudoku={sudoku} fromHistory={true} historyEntry={historyEntry} />
         ) : (
-          <div className='SudokuSpinner'>
+          <div className='SudokuError'>
             <Spinner style={{height: '3rem', width: '3rem'}}/>
           </div>
         )
       );
     } else {
       if ( this.props.location.state ) {
-        const { sudoku } = this.props.location.state;
+        const { sudoku, errorMessage } = this.props.location.state;
         return (
           (sudoku) ? (
             <SudokuBody sudoku={sudoku} />
-          ) : (
-            <div className='SudokuSpinner'>
-              <Spinner style={{height: '3rem', width: '3rem'}}/>
-            </div>
+          ) : ( 
+            (errorMessage) ? (
+              <div className='SudokuError'>
+                <div className='SudokuError__message'>
+                  {errorMessage}
+                </div>
+                <div className='SudokuError__options'>
+                  You can continue already started sudokus from <Link to='/history'>history</Link> page or try to <Link to='/'>select other difficulty</Link>!
+                </div>
+              </div>
+            ) : (
+              <div className='SudokuError'>
+                <Spinner style={{height: '3rem', width: '3rem'}}/>
+              </div>
+            )
           )
         );
       } else {
