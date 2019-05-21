@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Button, Alert } from 'reactstrap';
 import './Register.css';
 
 class Register extends Component {
@@ -20,11 +19,18 @@ class Register extends Component {
 
   render() {
     const { username, email, password } = this.state;
-    const { onRegister } = this.props;
+    const { onRegister, onRedirect, errorMessage } = this.props;
 
     return (
       <div className="Register">
         <div className="Register__content">
+          {
+            (errorMessage) ? (
+              <Alert color='danger'>{errorMessage}</Alert>
+            ) : (
+              <React.Fragment />
+            )
+          }
           <h2>Register</h2>
           <form>
             <div className="form-group">
@@ -65,7 +71,7 @@ class Register extends Component {
               Register
             </Button>
           </form>
-          <Link to="/login">Already have an account?</Link>
+          <div className='div-link' onClick={() => onRedirect()}>Already have an account?</div>
         </div>
       </div>
     )

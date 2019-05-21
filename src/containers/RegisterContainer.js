@@ -5,17 +5,36 @@ import { register } from '../redux/actions/userActions';
 import Register from '../components/Register/Register';
 
 class RegisterContainer extends Component {
-  onRegister = (username, email, password) => {
+  constructor() {
+    super();
+
+    this.state = {
+      errorMessage: null
+    }
+  }
+
+  onRegister = async (username, email, password) => {
     if (!username || !email || !password) {
       return;
     }
-    this.props.register(username, email, password);
+    await this.props.register(username, email, password);
+    this.setState({
+      errorMessage: this.props.errorMessage,
+    })
+  }
+
+  onRedirect = () => {
+    this.setState({
+      errorMessage: null,
+    });
+    this.props.history.push('/login');
   }
 
   render() {
-    const { isRegistered, errorMessage } = this.props;
+    const { isRegistered } = this.props;
+    const { errorMessage } = this.state;
 
-    return isRegistered ? <Redirect to="/login" /> : <Register onRegister={this.onRegister} errorMessage={errorMessage} />
+    return isRegistered ? <Redirect to="/login" /> : <Register onRegister={this.onRegister} errorMessage={errorMessage} onRedirect={this.onRedirect} />
   }
 }
 

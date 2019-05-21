@@ -5,20 +5,38 @@ import { login } from '../redux/actions/userActions';
 import Login from '../components/Login/Login';
 
 class LoginContainer extends Component {
+  constructor() {
+    super();
 
-  onLogin = (username, password) => {
+    this.state = {
+      errorMessage: null
+    }
+  }
+
+  onLogin = async (username, password) => {
     if (!username || !password) {
       return;
     }
-    this.props.login(username, password);
+    await this.props.login(username, password);
+    this.setState({
+      errorMessage: this.props.errorMessage,
+    });
+  }
+
+  onRedirect = () => {
+    this.setState({
+      errorMessage: null,
+    });
+    this.props.history.push('/register');
   }
 
   render() {
-    const { isLoggedIn, errorMessage } = this.props;
+    const { isLoggedIn } = this.props;
+    const { errorMessage } = this.state
     if ( localStorage.getItem('token') && isLoggedIn ) {
       return <Redirect to='/' />
     } else {
-      return <Login onLogin={this.onLogin} errorMessage={errorMessage} isLoggedIn={isLoggedIn}/>
+      return <Login onLogin={this.onLogin} errorMessage={errorMessage} isLoggedIn={isLoggedIn} onRedirect={this.onRedirect}/>
     }
   }
 }
