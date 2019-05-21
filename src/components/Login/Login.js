@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Button, Alert } from 'reactstrap';
 import './Login.css';
 
 class Login extends Component {
@@ -19,11 +18,18 @@ class Login extends Component {
 
   render() {
     const { username, password } = this.state;
-    const { onLogin } = this.props;
+    const { onLogin, errorMessage, onRedirect } = this.props;
 
     return (
       <div className='Login'>
         <div className='Login__content'>
+          {
+            (errorMessage) ? (
+              <Alert color='danger'>{errorMessage}</Alert>
+            ) : (
+              <React.Fragment />
+            )
+          }
           <h2>Login</h2>
           <form>
             <div className='form-group'>
@@ -54,7 +60,7 @@ class Login extends Component {
               Login
             </Button>
           </form>
-          <Link to='/register'>Don't have an account?</Link>
+          <div className='div-link' onClick={() => onRedirect()}>Don't have an account?</div>
         </div>
       </div>
     )
