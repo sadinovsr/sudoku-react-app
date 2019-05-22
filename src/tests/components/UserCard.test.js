@@ -12,13 +12,16 @@ describe('<UserCard />', () => {
     }
     shallow(<UserCard user={user} />);
   })
-  it('Should have a className UserCard', () => {
+  it('should call handleDelete() on button click', () => {
     const user = {
       _id: '_id',
       username: 'username',
       email: 'email',
       createdAt: 'createdAt',
     }
-    expect(shallow(<UserCard user={user}/>).is('.UserCard')).toBe(true);
-  })
+    const handleDelete = jest.fn();
+    const wrapper = shallow(<UserCard user={user} handleDelete={handleDelete}/>);
+    wrapper.find('Button').at(1).simulate('click');
+    expect(handleDelete).toHaveBeenCalledTimes(1);
+  });
 })
