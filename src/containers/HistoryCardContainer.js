@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import HistoryCard from "../components/HistoryCard/HistoryCard";
 import { getSudoku } from "../redux/actions/sudokuActions";
 
-class HistoryCardContainer extends Component {
+export class HistoryCardContainer extends Component {
 
   onContinue = historyEntry => {
     if ( !historyEntry ) {

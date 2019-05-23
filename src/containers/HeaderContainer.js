@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { logout, getUserSelf } from '../redux/actions/userActions';
 import Header from '../components/Header/Header';
 
-class HeaderContainer extends Component {
+export class HeaderContainer extends Component {
   componentDidMount() {
     if ( localStorage.getItem('token') ) {
       this.props.getUserSelf();
