@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme';
 import { HistoryCardContainer } from '../../containers/HistoryCardContainer';
 
-describe('<SudokuGrid />', () => {
+describe('<HistoryCardContainer />', () => {
   it('should render', () => {
     shallow(<HistoryCardContainer />)
   });

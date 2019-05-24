@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme';
 import { HeaderContainer } from '../../containers/HeaderContainer';
 
-describe('<SudokuGrid />', () => {
+describe('<HeaderContainer />', () => {
   it('should render with user info', () => {
     const getUserSelf = jest.fn();
     Storage.prototype.getItem = jest.fn(() => 'token');

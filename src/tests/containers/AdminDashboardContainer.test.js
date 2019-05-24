@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme';
 import { AdminDashboardContainer } from '../../containers/AdminDashboardContainer';
 
-describe('<SudokuGrid />', () => {
+describe('<AdminDashboardContainer />', () => {
   it('should render', () => {
     shallow(<AdminDashboardContainer />);    
   });
