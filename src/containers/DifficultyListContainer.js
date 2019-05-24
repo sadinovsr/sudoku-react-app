@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import DifficultyList from "../components/DifficultyList/DifficultyList";
 import { getAuthorizedRandomizedSudokuByDifficulty, getRandomizedSudokuByDifficulty } from "../redux/actions/sudokuActions";
 
-class DifficultyListContainer extends Component {
+export class DifficultyListContainer extends Component {
 
   onDifficultySelect = ( difficulty ) => {
     if ( localStorage.getItem('token') ) {

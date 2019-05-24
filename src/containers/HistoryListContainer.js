@@ -4,7 +4,7 @@ import HistoryList from "../components/HistoryList/HistoryList";
 import { getDividedHistoryEntries } from "../redux/actions/historyActions";
 import { Spinner } from 'reactstrap';
 
-class HistoryListContainer extends Component {
+export class HistoryListContainer extends Component {
 
   componentDidMount() {
     this.props.getDividedHistoryEntries();

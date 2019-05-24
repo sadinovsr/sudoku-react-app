@@ -7,7 +7,7 @@ import { getRandomizedSudokuByDifficulty } from "../redux/actions/sudokuActions"
 import { Spinner } from 'reactstrap';
 
 
-class SudokuBodyContainer extends Component {
+export class SudokuBodyContainer extends Component {
 
   redirectToHome = () => {
     this.props.history.push('/');

@@ -5,7 +5,7 @@ import { updateHistoryEntry } from "../redux/actions/historyActions";
 import { Spinner } from 'reactstrap';
 
 
-class SudokuGridContainer extends Component {
+export class SudokuGridContainer extends Component {
 
   onChangeSave = (sudokuId, newSudoku) => {
     this.props.updateHistoryEntry(sudokuId, newSudoku);
