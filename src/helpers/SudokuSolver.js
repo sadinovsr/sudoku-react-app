@@ -1,5 +1,11 @@
 import { objectToString } from './ObjectToString';
 
+// Sudoku solver which uses backtracing method.
+// Backtracing is not the fastest way to solve problems like
+//   sudoku puzzle, but for project of this scale it works
+//   fine and there is no need to implement faster solver
+//   at this moment.
+
 const makeBoard = gridObject => {
   let gridString = objectToString(gridObject);
   let gridArray = gridString.split('');
@@ -11,6 +17,7 @@ const makeBoard = gridObject => {
   return newArray;
 };
 
+// Saves empty positions in an array as (row, column).
 const saveEmptyPositions = (board) => {
   let emptyPositions = [];
   for(let i = 0; i < board.length; i++) {
@@ -23,6 +30,7 @@ const saveEmptyPositions = (board) => {
   return emptyPositions;
 };
 
+// Checks rows whether given value exists in specific row.
 const checkRow = (board, row, value) => {
   for(let i = 0; i < board[row].length; i++) {
     if(parseInt(board[row][i]) === value) {
@@ -32,6 +40,7 @@ const checkRow = (board, row, value) => {
   return true;
 };
 
+//Chacks column whether given value exists in specific column.
 const checkColumn = (board, column, value) => {
   for(let i = 0; i < board.length; i++) {
     if(parseInt(board[i][column]) === value) {
@@ -41,6 +50,7 @@ const checkColumn = (board, column, value) => {
   return true;
 };
 
+// Chacks 3x3 square whether given value exists in specific square.
 const check3x3Square = (board, column, row, value) => {
   let columnCorner = 0,
       rowCorner = 0,
@@ -71,6 +81,7 @@ const checkValue = (board, column, row, value) => {
   }
 };
 
+// Solves puzzle using backtracing method.
 const solvePuzzle = (board, emptyPositions) => {
   let limit = 9;
   let row, column, value, found;

@@ -6,7 +6,7 @@ import { getHistoryStatistics } from '../redux/actions/historyActions'
 import { logout } from '../redux/actions/userActions';
 import { Spinner } from 'reactstrap';
 
-class ProfileCardContainer extends Component {
+export class ProfileCardContainer extends Component {
 
   componentDidMount() {
     if ( localStorage.getItem('token') ) {

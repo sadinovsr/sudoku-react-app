@@ -6,7 +6,7 @@ import { addSudoku } from '../redux/actions/adminActions';
 import { Spinner } from 'reactstrap';
 
 
-class SudokuAddContainer extends Component {
+export class SudokuAddContainer extends Component {
   async componentDidMount() {
     if ( localStorage.getItem('token') ) {
       await this.props.getUserSelf();
