@@ -5,7 +5,7 @@ import { getAdminDashboardData, deleteUser } from '../redux/actions/adminActions
 import AdminDashboard from '../components/AdminDashboard/AdminDashboard';
 import { Spinner } from 'reactstrap';
 
-class AdminDashboardContainer extends Component {
+export class AdminDashboardContainer extends Component {
   async componentDidMount() {
     if ( localStorage.getItem('token') ) {
       await this.props.getUserSelf();
