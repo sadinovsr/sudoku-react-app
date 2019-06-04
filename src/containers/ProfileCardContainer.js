@@ -19,6 +19,9 @@ export class ProfileCardContainer extends Component {
     if (!newUserObject) {
       return;
     }
+    if ( /^[A-Za-z0-9_]+$/.test(newUserObject.username) === false ) {
+      return;
+    }
     await this.props.updateUser(userId, newUserObject);
     if ( this.props.isUpdated && shouldLogin ) {
       this.props.logout();
