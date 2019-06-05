@@ -12,7 +12,10 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 3px 15px rgb(212, 212, 212);
+}
 
+.Login__content .div-link {
+  width: 100px;
 }
 
 .Login__content__button {

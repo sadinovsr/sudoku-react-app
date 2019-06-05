@@ -7,15 +7,17 @@ describe('<ProfileCard />', () => {
     shallow(<ProfileCard />);
   });
   it('should update state when onEditOpen() and onEditClose() called', () => {
-    const wrapper = shallow(<ProfileCard />);
+    const clearErrorMessage = jest.fn();
+    const wrapper = shallow(<ProfileCard clearErrorMessage={clearErrorMessage}/>);
     const instance = wrapper.instance();
     expect(wrapper.state('isEditOpen')).toBe(false);
     instance.onEditOpen();
     expect(wrapper.state('isEditOpen')).toBe(true);
     instance.onEditClose();
     expect(wrapper.state('isEditOpen')).toBe(false);
+    expect(clearErrorMessage).toHaveBeenCalledTimes(1);
   });
-  it('should update state and call onUpdate when updating user without redirect', () => {
+  it('should update state and call onUpdate when updating user without redirect', async () => {
     const onUpdate = jest.fn();
     const user = {
       username: 'username'
@@ -28,12 +30,12 @@ describe('<ProfileCard />', () => {
     const wrapper = shallow(<ProfileCard onUpdate={onUpdate} user={user} />);
     const instance = wrapper.instance();
     wrapper.setState({ isEditOpen: true });
-    instance.onUserUpdate(userId, newUserObject);
+    await instance.onUserUpdate(userId, newUserObject);
     expect(wrapper.state('isEditOpen')).toBe(false);
     expect(onUpdate).toHaveBeenCalledWith(userId, newUserObject, false)
     expect(onUpdate).toHaveBeenCalledTimes(1);
   });
-  it('should update state and call onUpdate when updating user with redirect', () => {
+  it('should update state and call onUpdate when updating user with redirect', async () => {
     const onUpdate = jest.fn();
     const user = {
       username: 'username'
@@ -46,7 +48,7 @@ describe('<ProfileCard />', () => {
     const wrapper = shallow(<ProfileCard onUpdate={onUpdate} user={user} />);
     const instance = wrapper.instance();
     wrapper.setState({ isEditOpen: true });
-    instance.onUserUpdate(userId, newUserObject);
+    await instance.onUserUpdate(userId, newUserObject);
     expect(wrapper.state('isEditOpen')).toBe(false);
     expect(onUpdate).toHaveBeenCalledWith(userId, newUserObject, true)
     expect(onUpdate).toHaveBeenCalledTimes(1);

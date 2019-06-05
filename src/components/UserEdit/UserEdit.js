@@ -20,11 +20,18 @@ class UserEdit extends Component {
 
   render() {
     const { username, email, password } = this.state;
-    const { onClose, onUserUpdate, user } = this.props;
+    const { onClose, onUserUpdate, user, errorMessage } = this.props;
 
     return (
       <div className="UserEdit">
         <div className="UserEdit__content">
+          {
+            (errorMessage) ? (
+              <Alert color='danger'>{errorMessage}</Alert>
+            ) : (
+              <React.Fragment />
+            )
+          }
           <form>
             <div className="form-group">
               <label>Change username</label>
