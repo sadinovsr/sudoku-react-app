@@ -37,8 +37,8 @@ class RegisterContainer extends Component {
       return;
     }
     await this.props.register(username, email, password);
-      this.setErrorMessage(this.props.errorMessage);
-    }
+    this.setErrorMessage(this.props.errorMessage);
+  }
 
   onRedirect = () => {
     this.setErrorMessage(null);

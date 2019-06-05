@@ -25,25 +25,28 @@ class ProfileCard extends Component {
   }
 
   onEditClose = () => {
+    this.props.clearErrorMessage();
     this.setState({
       isEditOpen: false,
     })
   }
 
-  onUserUpdate = (userId, newUserObject) => {
-    this.setState({
-      isEditOpen: false,
-    });
+  onUserUpdate = async (userId, newUserObject) => {
     if ( this.props.user.username === newUserObject.username && newUserObject.password === '' ) {
-      this.props.onUpdate(userId, newUserObject, false);
+      await this.props.onUpdate(userId, newUserObject, false);
     } else {
-      this.props.onUpdate(userId, newUserObject, true);
+      await this.props.onUpdate(userId, newUserObject, true);
+    }
+    if ( !this.props.errorMessage ) {
+      this.setState({
+        isEditOpen: false,
+      });
     }
   }
 
   render() {
     const { isEditOpen } = this.state;
-    const { user, statistics } = this.props;
+    const { user, statistics, errorMessage } = this.props;
     return (
       user && statistics ? (
         <div className='ProfileCard'>
@@ -103,7 +106,7 @@ class ProfileCard extends Component {
                 <Progress value={statistics.usedSolveCount} max={statistics.doneCount} />
               </div>
             </div>
-            {isEditOpen && <UserEdit user={user} onClose={this.onEditClose} onUserUpdate={this.onUserUpdate} />}
+            {isEditOpen && <UserEdit user={user} onClose={this.onEditClose} onUserUpdate={this.onUserUpdate} errorMessage={errorMessage}/>}
           </div>
         </div>
       ) : ( 

@@ -8,6 +8,7 @@ describe('<DifficultyListcontainer />', () => {
     expect(wrapper.exists('DifficultyList')).toBe(true);
   });
   it('should call history.push() with object unauthorized', async () => {
+    Storage.prototype.getItem = jest.fn(() => null);
     const getRandomizedSudokuByDifficulty = jest.fn().mockImplementation(() => Promise.resolve());
     const push = jest.fn();
     const sudoku = 'sudoku';
@@ -24,6 +25,7 @@ describe('<DifficultyListcontainer />', () => {
     expect(push).toHaveBeenCalledWith(object);
   });
   it('should not call history.push() with object unauthorized', async () => {
+    Storage.prototype.getItem = jest.fn(() => null);
     const getRandomizedSudokuByDifficulty = jest.fn().mockImplementation(() => Promise.reject('errorMessage'));
     console.error = jest.fn();
     const push = jest.fn();

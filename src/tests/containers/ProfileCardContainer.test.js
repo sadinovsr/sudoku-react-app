@@ -26,9 +26,13 @@ describe('<ProfileCardContainer />', () => {
     const push = jest.fn();
     const wrapper = shallow(<ProfileCardContainer isUpdated={true} getUserSelf={getUserSelf} updateUser={updateUser} logout={logout} history={{push: push}} />)
     const instance = wrapper.instance();
-    await instance.onUpdate('userId', 'newUserObject', true);
+    const newUserObject = {
+      username: 'username',
+      email: 'email',
+    }
+    await instance.onUpdate('userId', newUserObject, true);
     expect(updateUser).toHaveBeenCalledTimes(1);
-    expect(updateUser).toHaveBeenCalledWith('userId', 'newUserObject');
+    expect(updateUser).toHaveBeenCalledWith('userId', newUserObject);
     expect(logout).toHaveBeenCalledTimes(1);
     expect(push).toHaveBeenCalledTimes(1);
     expect(push).toHaveBeenCalledWith('/login');
@@ -46,11 +50,15 @@ describe('<ProfileCardContainer />', () => {
     const updateUser = jest.fn();
     const logout = jest.fn();
     const push = jest.fn();
-    const wrapper = shallow(<ProfileCardContainer isUpdated={true} getUserSelf={getUserSelf} updateUser={updateUser} logout={logout} history={{push: push}} />)
+    const wrapper = shallow(<ProfileCardContainer isUpdated={true} getUserSelf={getUserSelf} updateUser={updateUser} logout={logout} history={{push: push}} errorMessage={null}/>)
     const instance = wrapper.instance();
-    await instance.onUpdate('userId', 'newUserObject', false);
+    const newUserObject = {
+      username: 'username',
+      email: 'email',
+    }
+    await instance.onUpdate('userId', newUserObject , false);
     expect(updateUser).toHaveBeenCalledTimes(1);
-    expect(updateUser).toHaveBeenCalledWith('userId', 'newUserObject');
+    expect(updateUser).toHaveBeenCalledWith('userId', newUserObject);
     expect(logout).toHaveBeenCalledTimes(0);
     expect(push).toHaveBeenCalledTimes(0);
     expect(getUserSelf).toHaveBeenCalledTimes(1);
