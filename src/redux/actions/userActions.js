@@ -81,9 +81,10 @@ const updateUserSuccess = () => {
   }
 }
 
-const updateUserError = () => {
+const updateUserError = message => {
   return {
     type: UPDATE_USER_ERROR,
+    payload: message,
   }
 }
 
@@ -138,18 +139,13 @@ export const getUserSelf = () => {
 
 export const updateUser = (userId, newUserObject) => {
   return dispatch => {
-    console.log(newUserObject);
     if ( newUserObject.password ) {
       newUserObject.password = CryptoJS.SHA256(newUserObject.password).toString()
     }
     return SudokuAPI.call('patch', API.UPDATE_USER + userId, newUserObject)
       .then(res => {
-        console.log(res);
         dispatch(updateUserSuccess());
       })
-      .catch(err => {
-        console.log(err);
-        dispatch(updateUserError());
-      })
+      .catch(e => dispatch(updateUserError( JSON.stringify( e.response.data.error ) ) ) );
   }
 }

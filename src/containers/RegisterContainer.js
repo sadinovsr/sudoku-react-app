@@ -13,20 +13,35 @@ class RegisterContainer extends Component {
     }
   }
 
+  setErrorMessage = ( message ) => {
+    this.setState({
+      errorMessage: message,
+    });
+  }
+
   onRegister = async (username, email, password) => {
-    if (!username || !email || !password) {
+    if (!username) {
+      this.setErrorMessage('Username field is required!');
+      return;
+    }
+    if (!email) {
+      this.setErrorMessage('Email field is required!');
+      return;
+    }
+    if (!password) {
+      this.setErrorMessage('Password field is required!');
+      return;
+    }
+    if ( /^[A-Za-z0-9_]+$/.test(username) === false ) {
+      this.setErrorMessage('Username must consist only of english letters, numbers, underscores');
       return;
     }
     await this.props.register(username, email, password);
-    this.setState({
-      errorMessage: this.props.errorMessage,
-    })
+    this.setErrorMessage(this.props.errorMessage);
   }
 
   onRedirect = () => {
-    this.setState({
-      errorMessage: null,
-    });
+    this.setErrorMessage(null);
     this.props.history.push('/login');
   }
 

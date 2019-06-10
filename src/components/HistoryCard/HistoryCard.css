@@ -1,17 +1,20 @@
 .HistoryCard {
   margin: 3px;
+  transition: border-color .3s ease-out;
+}
+
+.HistoryCard:hover {
+  
+  border-color: black;
+  cursor: pointer;
 }
 
 .HistoryCard__container {
-  margin: 0px 5px 0px 5px;
+  margin: 3px 5px 3px 5px;
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
   align-items: center;
-}
-
-.oneLine {
-  margin: 3px 0px 3px 0px;
 }
 
 .HistoryCard__container__index {
@@ -21,7 +24,7 @@
 }
 
 .HistoryCard__container__difficulty {
-  width: 30%;
+  width: 35%;
   font-size: 20px;
   font-weight: 200;
   text-transform: uppercase;
@@ -33,31 +36,13 @@
   font-weight: 200;
 }
 
-.HistoryCard__container__usedSolve {
+.HistoryCard__container__updated {
   width: 25%;
   padding-right: 10px;
   font-size: 20px;
   font-weight: 200;
   text-transform: uppercase;
   text-align: right;
-}
-
-.HistoryCard__container__button {
-  margin: 3px 0px 3px 0px;
-  width: 25%;
-  padding-right: 10px;
-  text-transform: uppercase;
-  text-align: right;
-}
-
-.button {
-  text-transform: uppercase;
-  background: transparent;
-}
-
-.button:hover {
-  background-color: transparent;
-  color: lightgrey;
 }
 
 @media screen and (max-width: 600px) {
@@ -71,7 +56,7 @@
     display: none;
   }
 
-  .HistoryCard__container__button, .HistoryCard__container__usedSolve {
+  .HistoryCard__container__updated {
     width: 40%;
   }
 }

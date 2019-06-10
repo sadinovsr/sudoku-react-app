@@ -61,9 +61,9 @@ export const getUserSelfReducer = (state = defaultState, action) => {
 export const updateUserReducer = (state = defaultState, action) => {
   switch (action.type) {
     case UPDATE_USER_SUCCESS:
-      return { ...state, isUpdated: true };
+      return { ...state, isUpdated: true, errorMessage: null };
     case UPDATE_USER_ERROR:
-      return { ...state, isUpdated: false };
+      return { ...state, isUpdated: false, errorMessage: action.payload };
     default:
       return state;
   }

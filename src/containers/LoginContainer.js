@@ -14,7 +14,16 @@ class LoginContainer extends Component {
   }
 
   onLogin = async (username, password) => {
-    if (!username || !password) {
+    if (!username) {
+      this.setState({
+        errorMessage: 'Please enter username!',
+      });
+      return;
+    }
+    if (!password) {
+      this.setState({
+        errorMessage: 'Please enter password!',
+      });
       return;
     }
     await this.props.login(username, password);
