@@ -10,16 +10,7 @@ class Header extends Component {
     this.toggleDropdown = this.toggleDropdown.bind(this);
     this.state = {
       doRedirectToLogin: false,
-      isLoggedIn: false,
       isDropdownOpen: false,
-    }
-  }
-
-  componentDidMount() {
-    if ( localStorage.getItem( 'token' ) !== null ) {
-      this.setState({
-        isLoggedIn: true,
-      });
     }
   }
 
@@ -31,7 +22,6 @@ class Header extends Component {
 
   handleLogout = () => {
     this.setState({
-      isLoggedIn: false,
       doRedirectToLogin: false,
     })
     this.props.onLogout();
@@ -45,6 +35,7 @@ class Header extends Component {
 
   render() {
     const { doRedirectToLogin } = this.state;
+    const { isLoggedIn } = this.props
 
     return (
       <div className="Header">
@@ -53,7 +44,7 @@ class Header extends Component {
         </div>
         <div className="Header__button">
           {
-            this.state.isLoggedIn ? (
+            isLoggedIn ? (
               <ButtonDropdown className='Header__button__dropdown' isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown}>
                 <DropdownToggle className='Header__button__dropdown__toggle' caret>
                   <span className='Header__button__dropdown__toggle__text'>
@@ -82,7 +73,7 @@ class Header extends Component {
                       <React.Fragment/>
                     )
                   }
-                  <DropdownItem onClick={this.handleLogout}>Logout</DropdownItem>
+                  <DropdownItem tag={Link} to='/' onClick={this.handleLogout}>Logout</DropdownItem>
                 </DropdownMenu>
               </ButtonDropdown>
             ) : (
