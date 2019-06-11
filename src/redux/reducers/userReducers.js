@@ -42,6 +42,10 @@ export const loginReducer = (state = defaultState, action) => {
       return { ...state, isLoggedIn: false };
     case LOGOUT_ERROR: 
       return { ...state, isLoggedIn: true };
+    case GET_USER_SELF_SUCCESS:
+      return { ...state, isLoggedIn: true };
+    case GET_USER_SELF_ERROR:
+      return { ...state, isLoggedIn: false };
     default:
       return state;
   }
