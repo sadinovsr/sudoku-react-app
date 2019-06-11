@@ -4,9 +4,12 @@ import { logout, getUserSelf } from '../redux/actions/userActions';
 import Header from '../components/Header/Header';
 
 export class HeaderContainer extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     if ( localStorage.getItem('token') ) {
-      this.props.getUserSelf();
+      await this.props.getUserSelf();
+      if ( !this.props.isLoggedIn ) {
+        this.props.logout();
+      }
     }
   }
 

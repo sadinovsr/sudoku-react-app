@@ -59,7 +59,6 @@ class SudokuAdd extends Component {
         })
         this.setState({
           errorMessage: null,
-          difficulty: 'easy',
           gridObj: gridCreator('000000000000000000000000000000000000000000000000000000000000000000000000000000000'),
         })
       } else {
