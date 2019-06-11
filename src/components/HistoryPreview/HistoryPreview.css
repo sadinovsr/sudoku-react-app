@@ -96,12 +96,24 @@
 }
 
 @media screen and (max-width: 400px) {
+  .HistoryPreview__content__preview {
+    margin-top: 5px;
+  }
+
+  .HistoryPreview__content__info__block {
+    margin: 2px 20px;
+  }
+
   .HistoryPreview__content__info__label {
     font-size: 16px;
   }
   
   .HistoryPreview__content__info__text {
     font-size: 16px;
+  }
+
+  .HistoryPreview__content__info__buttons {
+    margin-top: 5px;
   }
 }
 
